@@ -1,0 +1,79 @@
+svg {
+  font: 10px sans-serif;
+}
+
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.axis line {
+  stroke: #ddd;
+  stroke-width: .5px;
+}
+
+.axis path {
+  display: none;
+}
+
+rect.extent {
+  fill: #000;
+  fill-opacity: .125;
+  stroke: #fff;
+}
+
+rect.frame {
+  fill: #fff;
+  fill-opacity: .7;
+  stroke: #aaa;
+}
+
+circle {
+  fill: #ccc;
+  fill-opacity: .5;
+}
+
+.cell text {
+  pointer-events: none;
+}
+
+.UnderMatric {
+  fill: #000000;
+}
+
+.Matric {
+  fill: #6c0000;
+}
+
+.InterHigherSecondary {
+  fill: #e30000;
+}
+
+.UnderGraduate, .CertificateCourse, .DiplomaCourse {
+  fill: #f31600;
+}
+
+.ProfessionalGraduate {
+  fill: #867a00;
+}
+
+.Graduate {
+  fill: #18c400;
+}
+
+.PostDiplomaCourse {
+  fill: #00b228;
+}
+
+.PostGraduate {
+  fill: #00488c;
+}
+
+.Doctorate {
+  fill: #0000cc;
+}
+
+.Informationnotavailable, .Others {
+  fill: #fff;
+  stroke: #000;
+}
+

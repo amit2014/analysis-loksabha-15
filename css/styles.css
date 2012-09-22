@@ -1,0 +1,7 @@
+@charset "utf-8";
+.panel {
+	float: right;
+	width: 28%;
+	height: auto;
+	min-height: 400px;
+}
