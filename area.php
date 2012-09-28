@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Crimean War</title>
+    <title>Stacked Area</title>
     <script type="text/javascript" src="d3.v2.js"></script>
     <style type="text/css">
 
@@ -59,24 +59,41 @@ d3.csv("MPTrack.csv", function(mps) {
 
   var statesD = {}, states = [];
   var partiesD = {}, parties = [];
-
+var f1=<?php 
+			if(isset($_GET['field'])){
+				echo "\"";
+				echo urldecode($_GET['field']) ;
+				echo "\"";
+			}
+			else
+			echo "'State'"; 
+			?>;
+var f2=<?php 
+			if(isset($_GET['field2'])){
+				echo "\"";
+				echo urldecode($_GET['field2']) ;
+				echo "\"";
+			}
+			else
+			echo "'Political party'"; 
+			?>;
   function count(state, party)  {
     var c = 0;
     for (var i = mps.length - 1; i >= 0; i--)
-      if (mps[i]["State"] == state && mps[i]["Political party"] == party)
+      if (mps[i][f1] == state && mps[i][f2] == party)
         c++;
     return c;
   }
   
   //get distinct parties & states
   for (var i = mps.length - 1; i >= 0; i--) {
-    if(mps[i]["State"].length > 0)  {
-      if (statesD[mps[i]["State"]] == undefined)
-        statesD[mps[i]["State"]] = 1;
+    if(mps[i][f1].length > 0)  {
+      if (statesD[mps[i][f1]] == undefined)
+        statesD[mps[i][f1]] = 1;
       else
-        statesD[mps[i]["State"]]++;
+        statesD[mps[i][f1]]++;
     }
-    partiesD[mps[i]["Political party"]] = true;
+    partiesD[mps[i][f2]] = true;
   }
 
   //sort states into an array

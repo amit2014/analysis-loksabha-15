@@ -47,7 +47,7 @@ function draw_pie(field) {
 
 		var arcs = vis.selectAll("g.arc").data(donut).enter().append("g").attr("class", "arc").attr("transform", "translate(" + radius + "," + radius + ")");
 
-		var paths = arcs.append("path").attr("style","cursor:pointer")
+		var paths = arcs.append("path").attr("style","cursor:pointer; stroke:#000; stroke-width:0.2	")
 			.attr("fill", function(d, i) {
 				return color(i);
 			}).on("mouseover", function(d, i) {

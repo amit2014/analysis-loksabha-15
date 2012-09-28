@@ -26,7 +26,6 @@
     var map = d3.select("#chart").append("svg:svg")
         .attr("width", w)
         .attr("height", h)
-//        .call(d3.behavior.zoom().on("zoom", redraw))
         .call(initialize);
 
     var india = map.append("svg:g")
@@ -43,8 +42,10 @@
 		  .on("click",clc);
     });
 	var clicked=false;
+	var that;
 	function clc(){
 		clicked=true;
+
 		$("#s_info span").html(d3.select(this).attr("state"));
 		var parties=getallpartiesfrom(d3.select(this).attr("state"));
 		var party=[];
@@ -59,16 +60,25 @@
 				partyv.push(1);
 			}
 		}
-		function p_click(){
-			console.log(this)
-		}
 		$("#s_party ul").html("");
 		for(i=0;i<party.length;i++){
 			$("#s_party ul").append('<li class="cat-item" style="cursor:pointer" ><a>'+party[i]+': '+partyv[i]+'</a></li>');
 		}
+		if(this.style["fill"]!="#55aa99"){
+		if(that){
+			that.style["fill"]="green";
+		}
+		this.style["fill"]="#5a9";
+		that= this;
+		}
+		else{
+		this.style["fill"]="#393";
+		clicked=false;
+		}
 	}
 	
 	function cll(){
+		if(this.style["fill"]!="#55aa99")
 		this.style["fill"]="#393";
 		this.style["cursor"]="pointer";
 		if(!clicked){
@@ -91,15 +101,15 @@
 		for(i=0;i<party.length;i++){
 			$("#s_party ul").append('<li class="cat-item" style="cursor:pointer" ><a>'+party[i]+': '+partyv[i]+'</a></li>');
 		}
-	//	console.log(party);
-	//	console.log(partyv);
 		}
 	}
 	
 
 	
 	function clr(){
+		if(this.style["fill"]!="#55aa99"){
 		this.style["fill"]="green";
+		}
 
 	}
 	

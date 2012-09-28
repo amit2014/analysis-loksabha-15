@@ -3,7 +3,7 @@
   	<div id="flegend">
     &nbsp;
     </div>
-    <iframe src="histogram.php" id="frame" style="text-align:center;width:110%;height:110%;padding-left:10px;padding-right:20px;padding-top:20px;padding-bottom:10px; overflow:visible;" scrolling="yes" class="center"> </iframe>
+    <iframe src="histogram.php" id="frame" style="text-align:center;width:100%;height:100%;padding-left:10px;padding-right:20px;padding-top:20px;padding-bottom:10px; overflow:visible;" scrolling="yes" class="center"> </iframe>
   </div>
   <script>
 	var f= document.getElementById("frame").style;
