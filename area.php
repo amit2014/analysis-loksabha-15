@@ -197,21 +197,6 @@ var f2=<?php
                   .x(function(d) { return x(d.x); })
                   .y(function(d) { return y(0); }));
 
-  function plotAreasnLines()  {
-    areas.transition().duration(750)
-        .attr("d", d3.svg.area()
-                .x(function(d) { return x(d.x); })
-                .y0(function(d) { return y(d.y0); })
-                .y1(function(d) { return y(d.y0 + d.y); }));
-    lines.transition().duration(750)
-        .attr("d", d3.svg.line()
-                  .x(function(d) { return x(d.x); })
-                  .y(function(d) { return y(d.y0 + d.y); }));
-    setTimeout(function() {plotted = true;}, 800);
-  }
-
-  plotAreasnLines();
-
   // Add a label per state.
   svg.selectAll("text")
       .data(states)
@@ -241,9 +226,53 @@ var f2=<?php
       .attr("dy", ".35em")
       .text(d3.format(",d"));
 
+  svg.append("text")
+      .attr("x", width)
+      .attr("y", height/2 + 55)
+      .attr("transform", "rotate(-90 " + width + " " + (height/2 + 55) + ")")
+      .attr("dy", ".50em")
+      .attr("font-size", "14")
+      .attr("font-family", "Helvetica")
+      //.attr("font-style", "Oblique")
+      .text("... No. of MP's ...");
+
+  var total = svg.append("text")
+      .attr("x", width/2 - 100)
+      .attr("y", height+100)
+      .attr("dy", ".50em")
+      .attr("font-size", "14")
+      .attr("font-family", "Helvetica")
+      .attr("id", "unique")
+      //.attr("font-style", "Oblique")
+      .text("Total No. of MP's: 0");
+
   var dummyParty = [];
     for (var i = 0; i < states.length; i++)
       dummyParty.push({x:states[i], y:0, party: "Dummy"});
+
+  function plotAreasnLines(tots)  {
+    areas.transition().duration(750)
+        .attr("d", d3.svg.area()
+                .x(function(d) { return x(d.x); })
+                .y0(function(d) { return y(d.y0); })
+                .y1(function(d) { return y(d.y0 + d.y); }));
+    lines.transition().duration(750)
+        .attr("d", d3.svg.line()
+                  .x(function(d) { return x(d.x); })
+                  .y(function(d) { return y(d.y0 + d.y); }));
+    
+    total.transition().delay(750).text("Total No. of MP's: " + tots);
+    
+    setTimeout(function() {plotted = true;}, 800);
+  }
+
+  function getTots(pTemp)  {
+    var c = 0;
+    for (var i = pTemp.length - 1; i >= 0; i--)
+      for (var j = pTemp[i].length - 1; j >= 0; j--)
+        c += pTemp[i][j].y;
+    return c;
+  }
 
   function replot() {
     plotted = false;
@@ -256,20 +285,22 @@ var f2=<?php
         else
           pTemp.push(dummyParty);
       };
-
+      
       // Transpose the data into layers by party
       var layTemp = d3.layout.stack()(pTemp);
       areas.data(pTemp);
       lines.data(pTemp);
-      plotAreasnLines();
+      plotAreasnLines(getTots(pTemp));
     }
     else  {
       stackLayout = d3.layout.stack()(parties);
       areas.data(stackLayout);
       lines.data(stackLayout);
-      plotAreasnLines();
+      plotAreasnLines(getTots(parties));
     }
   }
+
+  replot();
 
 });
 

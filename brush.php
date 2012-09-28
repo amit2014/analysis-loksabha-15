@@ -41,12 +41,34 @@ circle {
   <body>
     <script type="text/javascript">
 
+<?php
+  function getvar($vname, $deflt)  { 
+    if(isset($_GET[$vname])){
+      echo "\"";
+      echo urldecode($_GET[$vname]) ;
+      echo "\"";
+    }
+    else
+    echo "'$deflt'"; 
+  }
+?>
+
 var data = [],
     dict = {},
-    fx = "Age",
-    fy = "Attendance";
+    fx = <?php
+          getvar('fx',"Age");
+          ?>,
+    fy = <?php
+          getvar('fy',"Attendance");
+          ?>;
 dict[fx] = [];
 dict[fy] = [];
+var stateFilt = <?php
+                getvar('state',"");
+                ?>,
+    partyFilt = <?php
+                getvar('party',"");
+                ?>;
 
 d3.csv("MPTrack.csv", function(mps) {
 
@@ -55,12 +77,16 @@ d3.csv("MPTrack.csv", function(mps) {
     var b = parseFloat(mps[i][fy]);
     if(isNaN(a) || isNaN(b))
       continue;
+    if(stateFilt != "" && mps[i]["State"] != stateFilt)
+      continue;
+    if(partyFilt != "" && mps[i]["Political party"] != partyFilt)
+      continue;
     data.push([a, b]);
     dict[fx].push(a);
     dict[fy].push(b);
   };
 
-  var margin = {top: 10, right: 10, bottom: 20, left: 40},
+  var margin = {top: 10, right: 10, bottom: 50, left: 40},
     width = 960 - margin.right - margin.left,
     height = 500 - margin.top - margin.bottom;
 
@@ -118,6 +144,19 @@ d3.csv("MPTrack.csv", function(mps) {
   function brushend() {
     svg.classed("selecting", !d3.event.target.empty());
   }
+
+  svg.append("text")
+    .text("... " + fx + " ...")
+    .attr("x", width/2 - 12*fx.length/2)
+    .attr("y", height+30)
+    .attr("font-size", 12);
+
+  svg.append("text")
+    .text("... " + fy + " ...")
+    .attr("x", "-" + (margin.left-15))
+    .attr("y", height/2 + 3*fy.length)
+    .attr("transform", "rotate(-90 -" + (margin.left-15) + " " + (height/2 + 3*fy.length) + ")")
+    .attr("font-size", 12);
 });
 
     </script>

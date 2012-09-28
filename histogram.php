@@ -28,30 +28,34 @@
 <script src="js/d3.v2.js"></script>
 <script src="js/histogram-chart.js"></script>
 <script>
+
+<?php
+  function getvar($vname, $deflt)  { 
+    if(isset($_GET[$vname])){
+      echo "\"";
+      echo urldecode($_GET[$vname]) ;
+      echo "\"";
+    }
+    else
+    echo "'$deflt'"; 
+  }
+?>
+
   var field =<?php 
-			if(isset($_GET['field'])){
-				echo "\"";
-				echo urldecode($_GET['field']) ;
-				echo "\"";
-			}
-			else
-			echo "'Age'"; 
+			getvar('field','Age');
 			?>;
   var state =<?php 
-      if(isset($_GET['state'])){
-        echo "\"";
-        echo urldecode($_GET['state']) ;
-        echo "\"";
-      }
-      else
-      echo "''"; 
+      getvar('state','');
       ?>;
+  var party = <?php 
+      getvar('party','');
+      ?>; 
   var distribution = [];
   d3.csv("MPTrack.csv",function(mps) {
     
     for (var i = mps.length - 1; i >= 0; i--) {
       mps[i][field] = parseFloat(mps[i][field]);
-      if(state.length == 0 || mps[i]['State'] == state)
+      if ( (state.length == 0 || mps[i]['State'] == state) && (party.length == 0 || mps[i]['Political party'] == party) )
         distribution.push(mps[i][field]);
     }
     
