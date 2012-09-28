@@ -37,7 +37,7 @@ var y = d3.scale.linear()
 var colors = [];
 var color = Math.random()*360, off = 4*360/39;
 for(var i = 1; i <= 50; ++i)
-  colors.push( "hsl(" + ((color+off*i)%360) + ", 60%, 60%)");
+  colors.push( "hsl(" + ((color+off*i)%360) + ", 60%, 50%)");
 
 
 var z = d3.scale.ordinal()
@@ -49,13 +49,16 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-svg.append("rect")
+var partyFilter = "";
+
+d3.csv("MPTrack.csv", function(mps) {
+
+  svg.append("rect")
   .attr("width", width-28)
   .attr("height", height)
   .attr("transform", "translate(3,0)")
-  .attr("fill", "#ddd");
-
-d3.csv("MPTrack.csv", function(mps) {
+  .attr("fill", "#ddd")
+  .on("click", function() {partyFilter = ""; replot();});
 
   var statesD = {}, states = [];
   var partiesD = {}, parties = [];
@@ -145,40 +148,69 @@ var f2=<?php
   }
   y.domain([0, maxFromAState]);
 
+  var plotted = false;
+
   // Add an area for each party
-  svg.selectAll("path.area")
+  var areas = svg.selectAll("path.area")
       .data(stackLayout)
     .enter().append("path")
       .attr("class", "area")
       .style("fill", function(d, i) { return z(i); })
       .attr("d", d3.svg.area()
-      .x(function(d) { return x(d.x); })
-      .y0(function(d) { return y(d.y0); })
-      .y1(function(d) { return y(d.y0 + d.y); }))
+                  .x(function(d) { return x(d.x); })
+                  .y0(function(d) { return y(0); })
+                  .y1(function(d) { return y(0); }))
       .on("mouseover", function(d,i) {
-        svg.selectAll("path.area").filter(function(d,j) { return i==j; })
-          .transition().style("fill", function(d,j) {
-            return d3.rgb(z(i)).brighter();
-          });
+        //console.log(plotted);
+        if(plotted) {
+          svg.selectAll("path.area").filter(function(d,j) { return i==j; })
+            .transition().style("fill", function(d,j) {
+              return d3.rgb(z(i)).brighter();
+            });
+        }
       })
       .on("mouseout", function(d,i) {
-        svg.selectAll("path.area")
-          .transition().style("fill", function(d,i) {
-            return z(i);
-          });
+        //console.log(plotted);
+        if(plotted) {
+          svg.selectAll("path.area")
+            .transition().style("fill", function(d,i) {
+              return z(i);
+            });
+        }
       })
-      .append("svg:title")
-        .text(function(d,i) { return d[0].party; });
+      .on("click", function(d,i)  {
+        if(partyFilter.length == 0)
+          partyFilter = parties[i][0].party;
+        else
+          partyFilter = "";
+        replot();
+      });
+  areas.append("svg:title").text(function(d,i) { return d[0].party; });
 
   // Add a line for each party.
-  svg.selectAll("path.line")
+  var lines = svg.selectAll("path.line")
       .data(stackLayout)
     .enter().append("path")
       .attr("class", "line")
       .style("stroke", function(d, i) { return d3.rgb(z(i)).darker(); })
       .attr("d", d3.svg.line()
-      .x(function(d) { return x(d.x); })
-      .y(function(d) { return y(d.y0 + d.y); }));
+                  .x(function(d) { return x(d.x); })
+                  .y(function(d) { return y(0); }));
+
+  function plotAreasnLines()  {
+    areas.transition().duration(750)
+        .attr("d", d3.svg.area()
+                .x(function(d) { return x(d.x); })
+                .y0(function(d) { return y(d.y0); })
+                .y1(function(d) { return y(d.y0 + d.y); }));
+    lines.transition().duration(750)
+        .attr("d", d3.svg.line()
+                  .x(function(d) { return x(d.x); })
+                  .y(function(d) { return y(d.y0 + d.y); }));
+    setTimeout(function() {plotted = true;}, 800);
+  }
+
+  plotAreasnLines();
 
   // Add a label per state.
   svg.selectAll("text")
@@ -208,6 +240,37 @@ var f2=<?php
       .attr("x", width -20)
       .attr("dy", ".35em")
       .text(d3.format(",d"));
+
+  var dummyParty = [];
+    for (var i = 0; i < states.length; i++)
+      dummyParty.push({x:states[i], y:0, party: "Dummy"});
+
+  function replot() {
+    plotted = false;
+    var pTemp = [];
+    if(partyFilter.length > 0)  {
+      
+      for (var i = 0; i < parties.length; i++) {
+        if(parties[i][0].party == partyFilter)
+          pTemp.push(parties[i]);
+        else
+          pTemp.push(dummyParty);
+      };
+
+      // Transpose the data into layers by party
+      var layTemp = d3.layout.stack()(pTemp);
+      areas.data(pTemp);
+      lines.data(pTemp);
+      plotAreasnLines();
+    }
+    else  {
+      stackLayout = d3.layout.stack()(parties);
+      areas.data(stackLayout);
+      lines.data(stackLayout);
+      plotAreasnLines();
+    }
+  }
+
 });
 
     </script>

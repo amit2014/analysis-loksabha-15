@@ -37,13 +37,24 @@
 			else
 			echo "'Age'"; 
 			?>;
+  var state =<?php 
+      if(isset($_GET['state'])){
+        echo "\"";
+        echo urldecode($_GET['state']) ;
+        echo "\"";
+      }
+      else
+      echo "''"; 
+      ?>;
   var distribution = [];
   d3.csv("MPTrack.csv",function(mps) {
+    
     for (var i = mps.length - 1; i >= 0; i--) {
-      mps[i][field] = mps[i][field].replace("/[^0-9\.]+/gi","");
-      mps[i][field] = parseFloat(mps[i][field].replace("/\.([0-9]*)\./gi",".$1"));
-      distribution.push(mps[i][field]);
+      mps[i][field] = parseFloat(mps[i][field]);
+      if(state.length == 0 || mps[i]['State'] == state)
+        distribution.push(mps[i][field]);
     }
+    
     d3.select("body")
       .datum(distribution)
     .call(histogramChart(field)
@@ -51,6 +62,7 @@
     //  .tickFormat(d3.format(".2f"))
     );
     //console.log(d3.scale.linear().domain(d3.extent(distribution)).ticks(5 * Math.ceil(Math.log(distribution.length)+1)));
+  
   });
 
 </script>
