@@ -33,10 +33,10 @@
 </style>
 <style type="text/css" media="screen">
 html {
-	margin-top: 28px !important;
+	margin-top: 15px !important;
 }
 * html body {
-	margin-top: 28px !important;
+	margin-top: 15px !important;
 }
 </style>
 <style type="text/css" id="custom-background-css">

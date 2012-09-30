@@ -13,7 +13,7 @@
       <h3>Panel</h3>
     </div>
     <div class="textwidget">
-      <div id="radioset" style="zoom: 0.85">
+      <div id="radioset" style="zoom: 0.83">
         <input type="radio" name="graphs" id="graphs_0" graph="histogram" checked="checked" />
         <label for="graphs_0">Histogram</label>
         <input type="radio" name="graphs" id="graphs_1" graph="pie"/>
@@ -25,10 +25,14 @@
         <input type="radio" name="graphs" id="graphs_4" graph="bars"/>
         <label for="graphs_4">Bar</label>
       </div>
-      <div class="noborder">
+      <div class='noborder'>
       <br/>
-          <div style="float:left;clear:left"><label for="xfield" >X-axis</label><select name="xfield" id="xfield" style="width:120px"></select></div>
-          <div style="float:right;clear:right"><label for="yfield" >Y-axis</label><select name="yfield" id="yfield" style="width:120px"></select></div>
+          <div style="float:left;clear:left;margin-bottom:20px"><label for="xfield" >X-axis</label><select name="xfield" id="xfield" style="width:120px"></select></div>
+          <div style="float:right;clear:right;margin-bottom:20px"><label for="yfield" >Y-axis</label><select name="yfield" id="yfield" style="width:120px"></select></div>
+      </div>
+      <div class="noborder">
+      	  <div style="float:left;clear:left;margin-bottom:20px"><label for="statef" >State</label><select name="statef" id="statef" style="width:290px"></select></div><br />
+      	  <div style="float:left;clear:left;margin-bottom:20px"><label for="partyf" >Political Party</label><select name="partyf" id="partyf" style="width:290px"></select></div>
       </div>
     </div>
   </div>

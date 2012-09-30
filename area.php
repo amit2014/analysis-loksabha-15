@@ -63,7 +63,7 @@ d3.csv("MPTrack.csv", function(mps) {
   var statesD = {}, states = [];
   var partiesD = {}, parties = [];
 var f1=<?php 
-			if(isset($_GET['field'])){
+			if(isset($_GET['field'])&& $_GET['field']!=''){
 				echo "\"";
 				echo urldecode($_GET['field']) ;
 				echo "\"";
@@ -72,7 +72,7 @@ var f1=<?php
 			echo "'State'"; 
 			?>;
 var f2=<?php 
-			if(isset($_GET['field2'])){
+			if(isset($_GET['field2'])&& $_GET['field2']!=''){
 				echo "\"";
 				echo urldecode($_GET['field2']) ;
 				echo "\"";

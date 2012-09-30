@@ -31,7 +31,7 @@
 
 <?php
   function getvar($vname, $deflt)  { 
-    if(isset($_GET[$vname])){
+    if(isset($_GET[$vname]) && $_GET[$vname]!=''){
       echo "\"";
       echo urldecode($_GET[$vname]) ;
       echo "\"";

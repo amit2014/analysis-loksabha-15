@@ -10,11 +10,9 @@
     <div id="widgets" class="home-widgets" >
 	  <?php include("includes/panel.php"); ?>
 	  <?php include("includes/widgets.php"); ?>
-    </div>
-    <!-- end of #widgets --> </div>
-  <!-- end of #wrapper --> 
-</div>
-<!-- end of #container -->
+    </div><!-- end of #widgets -->
+  </div><!-- end of #wrapper --> 
+</div><!-- end of #container -->
 <?php include("includes/footer.php"); ?>
 <?php include("includes/adminbar.php"); ?>
 </div>

@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.8.23.custom.css">
 <script type="text/javascript" src="js/d3.v2.js"></script>
+<script type="text/javascript" src="js/jquery-1.8.1.js"></script>
 <script type="text/javascript">
 
 <?php
@@ -45,8 +46,8 @@ function getvar($vname, $deflt)  {
 		 else
 		 data[3]++;
 		 }*/
-		console.log(data);
-		console.log(fieldd);
+	//	console.log(data);
+	//	console.log(fieldd);
 		/*var colors = [];
 		 var color = Math.random()*360, off = 4*360/39;
 		 for(var i = 1; i <= 50; ++i)
@@ -65,7 +66,7 @@ function getvar($vname, $deflt)  {
 		donut = d3.layout.pie();
 
 
-		var vis = d3.select("div").append("svg").data([data]).attr("width", width).attr("height", height);
+		var vis = d3.select("div").append("svg").data([data]).attr("width", width).attr("height", height).attr("style","float:left;");
 
 		var arcs = vis.selectAll("g.arc").data(donut).enter().append("g").attr("class", "arc").attr("transform", "translate(" + radius + "," + radius + ")");
 
@@ -85,6 +86,17 @@ function getvar($vname, $deflt)  {
 			});
 	
 		paths.append("title").text(function(d,i){return fieldd[i]+': '+(data[i]*100/mps.length).toFixed(2)+'%'});
+		
+		//console.log([data]);
+		var j=$('path');
+//		console.log(j);
+		for (l in j){
+		d3.select("div").append("div").data([data]).attr("id","leg").attr("style","background-color:#faf;width;300px;height:400px;float:left");
+		console.log(j.text());
+		}
+			
+		
+		
 		
 
 

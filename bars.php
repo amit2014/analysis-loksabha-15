@@ -1,5 +1,3 @@
-<!-- Annotated javascript available at http://enja.org/code/tuts/d3/bar -->
-<!-- Code walkthrough screencast available at -->
 <html>
   <head>
     <title>Bar Charts</title>
@@ -40,7 +38,7 @@ stroke: black;
     <script type="text/javascript">
 <?php
   function getvar($vname, $deflt)  { 
-    if(isset($_GET[$vname])){
+    if(isset($_GET[$vname])&& $_GET[$vname]!=''){
       echo "\"";
       echo urldecode($_GET[$vname]) ;
       echo "\"";
