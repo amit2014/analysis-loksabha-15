@@ -53,9 +53,9 @@ stroke: black;
     var dict = {};
     
     var flag = false, //for percentage flag should be true
-        StateOrParty = <?php 
-	       	           	getvar('field','State'); 
-	                   ?>, //either state or party will be on y axis
+        yField = <?php 
+	       	       getvar('field','State'); 
+                ?>, //either state or party will be on y axis
         stateFilt = <?php
                     getvar('state','');
                     ?>,
@@ -85,20 +85,20 @@ stroke: black;
 
         if(xField == '')
             for(var i = data.length - 1; i >= 0; --i) {
-                if(dict[data[i][StateOrParty]] == undefined)
-                    dict[data[i][StateOrParty]] = 0;
-                dict[data[i][StateOrParty]]++;
+                if(dict[data[i][yField]] == undefined)
+                    dict[data[i][yField]] = 0;
+                dict[data[i][yField]]++;
             }
         else    {
             var num = {};
             for(var i = data.length - 1; i >= 0; --i) {
                 if(!isNaN(parseFloat(data[i][xField]))) {
-                    if(num[data[i][StateOrParty]] == undefined) {
-                        num[data[i][StateOrParty]] = 0;
-                        dict[data[i][StateOrParty]] = 0;
+                    if(num[data[i][yField]] == undefined) {
+                        num[data[i][yField]] = 0;
+                        dict[data[i][yField]] = 0;
                     }
-                    dict[data[i][StateOrParty]] += parseFloat(data[i][xField]);
-                    num[data[i][StateOrParty]]++;
+                    dict[data[i][yField]] += parseFloat(data[i][xField]);
+                    num[data[i][yField]]++;
                 }
             }
             for (var key in dict)
@@ -110,9 +110,9 @@ stroke: black;
         var length = 0;
         if (flag){
             formatter = d3.format(".02f");
-            for (StateOrParty in dict){
-                var val = (dict[StateOrParty]*100/552);
-                data.push({"label":StateOrParty, "value":val});
+            for (yField in dict){
+                var val = (dict[yField]*100/552);
+                data.push({"label":yField, "value":val});
                 if (val>data_max)
                     data_max = val;
                 length++;
@@ -120,9 +120,9 @@ stroke: black;
         }
         else{
             formatter = d3.format(".00f");
-            for (StateOrParty in dict){
-                var val = (dict[StateOrParty]);
-                data.push({"label":StateOrParty, "value":val});
+            for (yField in dict){
+                var val = (dict[yField]);
+                data.push({"label":yField, "value":val});
                 if (val>data_max)
                     data_max = val;
                 length++;
