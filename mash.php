@@ -42,18 +42,22 @@ var svg = d3.select("body").append("svg")
 <?php
   function getvar($vname, $deflt)  { 
     if(isset($_GET[$vname])){
-      echo "\"";
       echo urldecode($_GET[$vname]) ;
-      echo "\"";
     }
     else
-    echo "'$deflt'"; 
+    echo "$deflt"; 
   }
 ?>
 
-var field = <?php
+var field = '<?php
               getvar('field','Questions');
-            ?>;
+            ?>',
+    stateFilt = [<?php
+                  getvar('state','');
+                ?>],
+    partyFilt = [<?php
+                  getvar('party','');
+                ?>];
 console.log(field);
 d3.csv("MPTrack.csv", function(mps) {
   var matrix = [];
@@ -63,9 +67,9 @@ d3.csv("MPTrack.csv", function(mps) {
 
   
   for (var i = 0, s = 0, p = 0; i < mps.length; i++) {
-    if(states.indexOf(mps[i]["State"]) < 0 && mps[i]["State"].length > 0)
+    if(states.indexOf(mps[i]["State"]) < 0 && mps[i]["State"].length > 0 && (stateFilt.length == 0 || stateFilt.indexOf(mps[i]["State"]) >= 0) )
       states[s++] = mps[i]["State"];
-    if(parties.indexOf(mps[i]["Political party"]) < 0 && mps[i]["Political party"].length > 0)
+    if(parties.indexOf(mps[i]["Political party"]) < 0 && mps[i]["Political party"].length > 0 && (partyFilt.length == 0 || partyFilt.indexOf(mps[i]["Political party"]) >= 0) )
       parties[p++] = mps[i]["Political party"];
   };
 
@@ -81,7 +85,7 @@ d3.csv("MPTrack.csv", function(mps) {
   }
 
   for (var i = mps.length - 1; i >= 0; i--)
-    if( states.indexOf(mps[i]["State"]) >= 0 && parties.indexOf(mps[i]["Political party"]) >= 0 && !isNaN(parseFloat(mps[i][field]))) {
+    if( states.indexOf(mps[i]["State"]) >= 0 && parties.indexOf(mps[i]["Political party"]) >= 0 && !isNaN(parseFloat(mps[i][field])) ) {
       matrix[states.indexOf(mps[i]["State"])][parties.indexOf(mps[i]["Political party"])].z += parseFloat(mps[i][field]);
       numb[states.indexOf(mps[i]["State"])][parties.indexOf(mps[i]["Political party"])]++;
     }
@@ -174,7 +178,7 @@ d3.csv("MPTrack.csv", function(mps) {
         .attr("r", Math.min(x.rangeBand(),y.rangeBand())/2-1)
         .attr("stroke", "black")
         .style("fill-opacity", function(d) { return d.z; })
-        .style("fill", function(d) { return d.z == 0 ? "white" : "darkred"; })
+        .style("fill", "darkred")
         .on("mouseover", mouseover)
         .on("mouseout", mouseout)
         .append("title").text(function(d)  {return "Average " + field + ": " + parseFloat(parseInt((d.z*max*100)))/100.0;});

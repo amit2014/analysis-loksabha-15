@@ -44,31 +44,29 @@ circle {
 <?php
   function getvar($vname, $deflt)  { 
     if(isset($_GET[$vname])){
-      echo "\"";
       echo urldecode($_GET[$vname]) ;
-      echo "\"";
     }
     else
-    echo "'$deflt'"; 
+    echo "$deflt"; 
   }
 ?>
 
 var data = [],
     dict = {},
-    fx = <?php
+    fx = '<?php
           getvar('fx',"Age");
-          ?>,
-    fy = <?php
+          ?>',
+    fy = '<?php
           getvar('fy',"Attendance");
-          ?>;
+          ?>';
 dict[fx] = [];
 dict[fy] = [];
-var stateFilt = <?php
+var stateFilt = [<?php
                 getvar('state',"");
-                ?>,
-    partyFilt = <?php
+                ?>],
+    partyFilt = [<?php
                 getvar('party',"");
-                ?>;
+                ?>];
 
 d3.csv("MPTrack.csv", function(mps) {
 
@@ -77,9 +75,9 @@ d3.csv("MPTrack.csv", function(mps) {
     var b = parseFloat(mps[i][fy]);
     if(isNaN(a) || isNaN(b))
       continue;
-    if(stateFilt != "" && mps[i]["State"] != stateFilt)
+    if(stateFilt.length != 0 && stateFilt.indexOf(mps[i]["State"]) < 0)
       continue;
-    if(partyFilt != "" && mps[i]["Political party"] != partyFilt)
+    if(partyFilt.length != 0 && partyFilt.indexOf(mps[i]["Political party"]) < 0)
       continue;
     data.push([a, b]);
     dict[fx].push(a);

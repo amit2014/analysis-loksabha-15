@@ -10,24 +10,19 @@
     <div id="chart"></div>
     <script type="text/javascript">
           <?php
-        function getvar($vname, $deflt)  { 
-          if(isset($_GET[$vname])){
-            echo "\"";
+        function getvar($vname)  { 
+          if(isset($_GET[$vname]))
             echo urldecode($_GET[$vname]) ;
-            echo "\"";
-          }
-          else
-          echo "'$deflt'"; 
         }
       ?>
 
-      var stateFilt = <?php
-                      getvar('state','');
-                      ?>,
-          partyFilt = <?php
-                      getvar('party','');
-                      ?>;
-
+      var stateFilt = [<?php
+                      getvar('state');
+                      ?>],
+          partyFilt = [<?php
+                      getvar('party');
+                      ?>];
+console.log(stateFilt);
       d3.csv("MPTrack.csv", function(mps) {
 
         var age = "Age",
@@ -45,9 +40,9 @@
           for(trait in traits)
             if ( isNaN ( parseFloat ( obj[ traits[trait] ] ) ) )
               return false;
-          if (stateFilt != "" && obj["State"] != stateFilt)
+          if (stateFilt.length != 0 && stateFilt.indexOf(obj["State"]) < 0)
             return false;
-          if (partyFilt != "" && obj["Political party"] != partyFilt)
+          if (partyFilt.length != 0 && partyFilt.indexOf(obj["Political party"]) < 0)
             return false;
           return true;
         });

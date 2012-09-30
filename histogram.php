@@ -32,30 +32,29 @@
 <?php
   function getvar($vname, $deflt)  { 
     if(isset($_GET[$vname])){
-      echo "\"";
       echo urldecode($_GET[$vname]) ;
-      echo "\"";
     }
     else
-    echo "'$deflt'"; 
+    echo "$deflt"; 
   }
 ?>
 
-  var field =<?php 
+  var field ='<?php 
 			getvar('field','Age');
-			?>;
-  var state =<?php 
+			?>';
+  var state =[<?php 
       getvar('state','');
-      ?>;
-  var party = <?php 
+      ?>];
+  var party = [<?php 
       getvar('party','');
-      ?>; 
+      ?>]; 
   var distribution = [];
+  console.log(state);
+  console.log(party);
   d3.csv("MPTrack.csv",function(mps) {
-    
     for (var i = mps.length - 1; i >= 0; i--) {
       mps[i][field] = parseFloat(mps[i][field]);
-      if ( (state.length == 0 || mps[i]['State'] == state) && (party.length == 0 || mps[i]['Political party'] == party) )
+      if ( (state.length == 0 || state.indexOf(mps[i]['State']) >= 0) && (party.length == 0 || party.indexOf(mps[i]['Political party']) >= 0) )
         distribution.push(mps[i][field]);
     }
     

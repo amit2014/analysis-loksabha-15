@@ -35,50 +35,49 @@ stroke: black;
         }
     </style>
   </head>
-  <body style="text-align:center">
+  <body style="text-align:left">
     <script src="js/d3.v2.js"></script>
     <script type="text/javascript">
 <?php
   function getvar($vname, $deflt)  { 
     if(isset($_GET[$vname])){
-      echo "\"";
       echo urldecode($_GET[$vname]) ;
-      echo "\"";
     }
     else
-    echo "'$deflt'"; 
+    echo "$deflt"; 
   }
 ?>
 
     var dict = {};
     
     var flag = false, //for percentage flag should be true
-        yField = <?php 
+        yField = '<?php 
 	       	       getvar('field','State'); 
-                ?>, //either state or party will be on y axis
-        stateFilt = <?php
+                ?>', //either state or party will be on y axis
+        stateFilt = [<?php
                     getvar('state','');
-                    ?>,
-        partyFilt = <?php
+                    ?>],
+        partyFilt = [<?php
                     getvar('party','');
-                    ?>,
-        xField = <?php
+                    ?>],
+        xField = '<?php
                 getvar('xfield','');
-                ?>,
+                ?>',
         sortby = true, //sortby = true for sortby value, false for label
         data_max = 0;
+        console.log(stateFilt);
 
-    if(<?php
+    if('<?php
         getvar('sort','x')
-        ?> == 'y')
+        ?>' == 'y')
         sortby = false;
 
     d3.csv("MPTrack.csv", function(data) {
     
         data = data.filter(function(obj)    {
-          if (stateFilt != "" && obj["State"] != stateFilt)
+          if (stateFilt.length != 0 && stateFilt.indexOf(obj["State"]) < 0)
             return false;
-          if (partyFilt != "" && obj["Political party"] != partyFilt)
+          if (partyFilt.length != 0 && partyFilt.indexOf(obj["Political party"]) < 0)
             return false;
           return true;
         });
@@ -152,7 +151,7 @@ stroke: black;
 
 
         var w = 900, //width
-            h = 25*length, //height
+            h = 50*length, //height
             color = function(id) { return '#008aa9' };
 
         var x = d3.scale.linear()
@@ -160,15 +159,14 @@ stroke: black;
             .range([0, w - ( left_margin +50 ) ]),
             y = d3.scale.ordinal()
             .domain(d3.range(data.length))
-            .rangeBands([bottom_margin, h - top_margin], .5);
-
+            .rangeBands([bottom_margin, h - top_margin], .75);
 
         var chart_top = h - y.rangeBand()/2 - top_margin;
         var chart_bottom = bottom_margin + y.rangeBand()/2;
         var chart_left = left_margin;
         var chart_right = w -10;
 
-        /*
+   /*
     * Setup the SVG element and position it
     */
         var vis = d3.select("body")
@@ -221,14 +219,12 @@ stroke: black;
             .attr("x", right_margin)
             .attr("fill", color(0))
             .attr("stroke", color(0))
-            .attr("height", y.rangeBand()+10).transition().duration(1000)
+            .attr("height", (chart_top + top_margin*0.5 - chart_bottom)/data.length - 20).transition().duration(1000)
             .attr("width", function(d) {
                     return (x(d.value));
                     });
 
-
         //Labels
-
         var labels = vis.selectAll("g.bar")
             .append("svg:text")
                 .attr("class", "label")

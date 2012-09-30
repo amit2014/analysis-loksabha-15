@@ -62,24 +62,12 @@ d3.csv("MPTrack.csv", function(mps) {
 
   var statesD = {}, states = [];
   var partiesD = {}, parties = [];
-var f1=<?php 
-			if(isset($_GET['field'])){
-				echo "\"";
-				echo urldecode($_GET['field']) ;
-				echo "\"";
-			}
-			else
-			echo "'State'"; 
-			?>;
-var f2=<?php 
-			if(isset($_GET['field2'])){
-				echo "\"";
-				echo urldecode($_GET['field2']) ;
-				echo "\"";
-			}
-			else
-			echo "'Political party'"; 
-			?>;
+var f1='State';
+var f2='Political party';
+var partyFilt = [<?php 
+      if(isset($_GET['party']))
+        echo urldecode($_GET['party']); 
+      ?>];
   function count(state, party)  {
     var c = 0;
     for (var i = mps.length - 1; i >= 0; i--)
@@ -87,16 +75,16 @@ var f2=<?php
         c++;
     return c;
   }
-  
+  console.log(partyFilt);
   //get distinct parties & states
   for (var i = mps.length - 1; i >= 0; i--) {
-    if(mps[i][f1].length > 0)  {
+    if(mps[i][f1].length > 0 && (partyFilt.length == 0 || partyFilt.indexOf(mps[i]["Political party"]) >= 0))  {
       if (statesD[mps[i][f1]] == undefined)
         statesD[mps[i][f1]] = 1;
       else
         statesD[mps[i][f1]]++;
+      partiesD[mps[i][f2]] = true;
     }
-    partiesD[mps[i][f2]] = true;
   }
 
   //sort states into an array
