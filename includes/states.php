@@ -46,7 +46,7 @@
 	function clc(){
 		clicked=true;
 
-		$("#s_info span").html(d3.select(this).attr("state"));
+		$("#s_info span").html("State Name: <a style='cursor:default'>"+d3.select(this).attr("state")+"</a>");
 		var parties=getallpartiesfrom(d3.select(this).attr("state"));
 		var party=[];
 		var partyv=[];
@@ -62,7 +62,7 @@
 		}
 		$("#s_party ul").html("");
 		for(i=0;i<party.length;i++){
-			$("#s_party ul").append('<li class="cat-item" style="cursor:pointer" ><a>'+party[i]+': '+partyv[i]+'</a></li>');
+			$("#s_party ul").append('<li class="cat-item" style="cursor:default" ><a>'+party[i]+': '+partyv[i]+'</a></li>');
 		}
 		if(this.style["fill"]!="#55aa99"){
 		if(that){
@@ -82,7 +82,7 @@
 		this.style["fill"]="#393";
 		this.style["cursor"]="pointer";
 		if(!clicked){
-		$("#s_info span").html(d3.select(this).attr("state"));
+		$("#s_info span").html("State Name: <a style='cursor:default'>" + d3.select(this).attr("state")+"</a>");
 		var parties=getallpartiesfrom(d3.select(this).attr("state"));
 		var party=[];
 		var partyv=[];
@@ -163,7 +163,7 @@
       <div id="s_info" class="widget-wrapper widget_recent_entries">
         <div class="widget-title">State Info</div>
         <ul>
-          <li class="cat-item cat-item-1">State Name: <span></span></li>
+          <li class="cat-item cat-item-1"><span></span></li>
         </ul>
       </div>
       <div id="s_party" class="widget-wrapper widget_categories">

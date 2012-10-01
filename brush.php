@@ -54,10 +54,10 @@ circle {
 var data = [],
     dict = {},
     fx = '<?php
-          getvar('fx',"Age");
+          getvar('xfield',"Age");
           ?>',
     fy = '<?php
-          getvar('fy',"Attendance");
+          getvar('field',"Attendance");
           ?>';
 dict[fx] = [];
 dict[fy] = [];
@@ -88,12 +88,28 @@ d3.csv("MPTrack.csv", function(mps) {
     width = 960 - margin.right - margin.left,
     height = 500 - margin.top - margin.bottom;
 
+  var xdom = d3.extent(dict[fx]);
+  var xdiff = xdom[1]-xdom[0];
+  xdom[0] -= xdiff/17.5;
+  xdom[0] = Math.max(0,xdom[0]);
+  xdom[1] += xdiff/17.5;
+  if(fx == "Attendance")
+    xdom[1] = Math.min(100,xdom[1]);
+
+  var ydom = d3.extent(dict[fy]);
+  var ydiff = ydom[1]-ydom[0];
+  ydom[0] -= ydiff/17.5;
+  ydom[0] = Math.max(0,ydom[0]);
+  ydom[1] += ydiff/17.5;
+  if(fy == "Attendance")
+    ydom[1] = Math.min(100,ydom[1]);
+
   var x = d3.scale.linear()
-      .domain(d3.extent(dict[fx]))
+      .domain(xdom)
       .range([0, width]);
 
   var y = d3.scale.linear()
-      .domain(d3.extent(dict[fy]))
+      .domain(ydom)
       .range([height, 0]);
 
   var svg = d3.select("body").append("svg")
