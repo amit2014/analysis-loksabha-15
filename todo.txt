@@ -8,7 +8,6 @@ TODO CSP ASSIGNMENT 2
 	d. remove Posted on September 12, 2012 by admin — No Comments ↓
 	e. when no state is selected, provide info about whole of india and its political party distribution (discuss?)
 4. Move home page to important plots
-	a. What goes under the three home widgets?
 	c. Pie Chart
 		i. Instead of percentage, show absolute values and numbers or better still, provide functionality to user in the form of a radio button
 		v. change label of 'x-axis' to 'parameter'
