@@ -54,7 +54,9 @@ function initall() {
 		document.getElementById('partyf').onchange = setparty;
 		function setfield2(){
 			var get=showurl();
-			d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+get[3]+"&field2="+this.options[this.selectedIndex].value+'&party='+get[5]));
+			var v=decodeURIComponent(this.options[this.selectedIndex].value);
+			d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+get[3]+"&field2="+v+'&party='+get[5]));
+			//console.log(encodeURI(get[1]+"?field="+get[2]+"&state="+get[3]+"&field2="+v+'&party='+get[5]));
 		}
 		function showurl(){
 			var curl = decodeURIComponent(d3.select("iframe").attr("src"));
@@ -62,8 +64,8 @@ function initall() {
 			var field=  curl.substring(curl.indexOf('?')+7,curl.indexOf('&'));
 			var state=  curl.substring(curl.indexOf("state")+6);state=state.substring(0,state.indexOf('&'));
 			var field2= curl.substring(curl.indexOf("field2")+7);field2=field2.substring(0,field2.indexOf('&'));
-			var party = curl.substring(curl.indexOf('party')+6).substring(0);
-			//console.log([curl,file,field,state,field2,party]);
+			var party = curl.substring(curl.indexOf('party=')+6);
+			console.log([curl,file,field,state,field2,party]);
 			return [curl,file,field,state,field2,party];
 		}
 		function setfield() {
@@ -132,7 +134,7 @@ function initall() {
 			}
 			document.getElementById("xfield").selectedIndex = 0;
 			var get=showurl();
-			d3.select("iframe").attr("src", encodeURI("histogram.php"+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+'&party='+get[5]));
+			d3.select("iframe").attr("src", encodeURI("histogram.php"+"?field=Age"+"&state="+get[3]+"&field2="+get[4]+'&party='+get[5]));
 			//getdhw();
 		}
 
@@ -169,11 +171,11 @@ function initall() {
 			x_field.innerHTML = "";
 			y_field.innerHTML = "";
 			for (field in avx_fields) {
-				 {x_field.innerHTML += "<option value=\'" + escape(avx_fields[field]) +"\'>" + avx_fields[field] + "</option>";
-				y_field.innerHTML += "<option value=\'" + escape(avx_fields[field]) +"\'>" + avx_fields[field] + "</option>";}
+				 x_field.innerHTML += "<option value=\'" + escape(avx_fields[field]) +"\'>" + avx_fields[field] + "</option>";
+				y_field.innerHTML += "<option value=\'" + escape(avx_fields[field]) +"\'>" + avx_fields[field] + "</option>";
 			}
 			document.getElementById("xfield").selectedIndex = 0;
-			document.getElementById("yfield").selectedIndex = 3;
+			document.getElementById("yfield").selectedIndex = 1;
 			
 			var get=showurl();
 			d3.select("iframe").attr("src", encodeURI("brush.php"+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+'&party='+get[5]));		
@@ -205,13 +207,19 @@ function initall() {
 			var x_field = document.getElementById("xfield");
 			var y_field = document.getElementById("yfield");
 			var avx_fields = ["Frequency","Age","Attendance","Debates","Questions"];
+			var avy_fields = ["Political party","State","Educational qualifications"];
 			x_field.innerHTML = "";
+			y_field.innerHTML = "";
 			for (field in avx_fields) {
-				x_field.innerHTML += "<option value=\'" + escape(avx_fields[field])+ "\'>" + avx_fields[field] + "</option>	";
+				
+				 x_field.innerHTML += "<option value=\'" + escape(avx_fields[field]=='Frequency'?'':avx_fields[field]) +"\'>" + avx_fields[field] + "</option>";}
+			for(field in avy_fields){
+				y_field.innerHTML += "<option value=\'" + escape(avy_fields[field]) +"\'>" + avy_fields[field] + "</option>";
 			}
 			document.getElementById("xfield").selectedIndex = 0;
+			document.getElementById("yfield").selectedIndex = 1;
 			var get=showurl();
-			d3.select("iframe").attr("src", encodeURI("bars.php"+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+'&party='+get[5]));		
+			d3.select("iframe").attr("src", encodeURI("bars.php"+"?field="+get[2]+"&state="+get[3]+"&field2=State"+'&party='+get[5]));		
 			$('#frame').css('height','1800px');
 			//getdhw();
 		}
