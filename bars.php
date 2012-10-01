@@ -50,7 +50,7 @@ stroke: black;
     
     var flag = false, //for percentage flag should be true
         yField = '<?php 
-	       	       getvar('field','State'); 
+	       	       getvar('field2','State'); 
                 ?>', //either state or party will be on y axis
         stateFilt = [<?php
                     getvar('state','');
@@ -59,7 +59,7 @@ stroke: black;
                     getvar('party','');
                     ?>],
         xField = '<?php
-                getvar('xfield','');
+                getvar('field','');
                 ?>',
         sortby = true, //sortby = true for sortby value, false for label
         data_max = 0;
