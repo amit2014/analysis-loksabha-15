@@ -7,9 +7,10 @@
 <title>Analysis of 15th LOK SABHA</title>
 <link rel="icon" type="image/ico" href="recources/favicon.png"></link>
 <link rel="shortcut icon" href="resources/favicon.png"></link>
+
 <link rel="stylesheet" id="admin-bar-css" href="resources/admin-bar.css" type="text/css" media="all">
 <link rel="stylesheet" id="responsive-style-css" href="resources/style.css" type="text/css" media="all">
-<link href="css/styles.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/styles.css" type="text/css">
 <!--link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.8.23.custom.css"-->
 <link rel="stylesheet" href="css/ui-darkness/jquery-ui-1.8.23.custom.css">
 <link rel="stylesheet" href="css/button.css">
