@@ -9,33 +9,40 @@
 
 <?php
 function getvar($vname, $deflt)  { 
-  if(isset($_GET[$vname])){
-    echo "\"";
+  if(isset($_GET[$vname]) && $_GET[$vname]!=''){
     echo urldecode($_GET[$vname]) ;
-    echo "\"";
   }
   else
-  echo "'$deflt'"; 
+  echo "$deflt"; 
 }
 ?>
 
-	var field = <?php 
-			getvar('field','Political party');
-			?>;
+	var field = "<?php 
+			getvar('field',"Political party");
+			?>";
+	var state =[<?php 
+			getvar('state','');
+			?>];
+	var party = [<?php 
+			getvar('party','');
+			?>]; 
 	var data = [];
 	d3.csv("MPTrack.csv", function(mps) {
 		var fieldd = [];
-
+		console.log('->',field,state.length,party.length);
 		for (var j = mps.length - 1; j >= 0; j--) {
 			var key = mps[j][field];
-			if (fieldd.indexOf(key) >= 0) {
-				data[fieldd.indexOf(key)]++;
-			}
-			else {
-				fieldd.push(key);
-				data.push(1);
+			
+//			console.log();
+			if ( (state.length == 0 || state.indexOf(mps[j]['State']) >= 0)&& (party.length == 0 || party.indexOf(mps[j]['Political party']) >= 0)	){
+				if ((fieldd.indexOf(key) >= 0)) {
+					data[fieldd.indexOf(key)]++;
+				}else{
+					fieldd.push(key);
+					data.push(1);
 			}
 		}
+	}
 		/*for (var i = mps.length - 1; i >= 0; i--) {
 		 if (mps[i]["Age"]>70)
 		 data[0]++;
@@ -84,15 +91,12 @@ function getvar($vname, $deflt)  {
 					return color(i);
 				});
 			});
-	
-		paths.append("title").text(function(d,i){return fieldd[i]+': '+(data[i]*100/mps.length).toFixed(2)+'%'});
-		
-		//console.log([data]);
+		function sum(){var sum=0;for(i in data){ sum+=data[i];}return sum;}
+		paths.append("title").text(function(d,i){return fieldd[i]+': '+(data[i]*100/sum()).toFixed(2)+'%'+' ('+data[i]+')'});
 		var j=$('path');
-//		console.log(j);
 		for (l in j){
 		d3.select("div").append("div").data([data]).attr("id","leg").attr("style","background-color:#faf;width;300px;height:400px;float:left");
-		console.log(j.text());
+		//console.log(j.text());
 		}
 			
 		
@@ -116,9 +120,9 @@ function getvar($vname, $deflt)  {
 			});*/
 
 
-		paths.transition().ease("bounce").duration(1000).attrTween("d", tweenPie);
+		paths.transition().ease("linear").duration(500).attrTween("d", tweenPie);
 
-		paths.transition().ease("bounce").delay(function(d, i) {
+		paths.transition().ease("linear").delay(function(d, i) {
 				return 2000 - i * 20;
 			}).duration(500).attrTween("d", tweenDonut);
 
@@ -134,7 +138,7 @@ function getvar($vname, $deflt)  {
 			}
 
 		function tweenDonut(b) {
-				b.innerRadius = radius * 0.1;
+				b.innerRadius = radius * 0.0;
 				var i = d3.interpolate({
 					innerRadius: 0
 				}, b);

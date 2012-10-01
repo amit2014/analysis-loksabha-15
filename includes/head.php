@@ -5,74 +5,97 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="robots" content="noindex,nofollow">
 <title>Analysis of 15th LOK SABHA</title>
-<link rel="icon" type="image/ico" href="recources/favicon.png">
-</link>
-<link rel="shortcut icon" href="resources/favicon.png">
-</link>
-<link rel="stylesheet" id="admin-bar-css" href="resources/admin-bar.css" type="text/css" media="all">
-<link rel="stylesheet" id="responsive-style-css" href="resources/style.css" type="text/css" media="all">
-<link rel="stylesheet" href="css/styles.css" type="text/css">
-<!--link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.8.23.custom.css"-->
-<link rel="stylesheet" href="css/ui-darkness/jquery-ui-1.8.23.custom.css">
-<link rel="stylesheet" href="css/button.css">
-<script src="js/jquery-1.8.1.js"></script>
-<script src="js/jquery-ui-1.8.23.custom.min.js"></script>
-<script type="text/javascript" src="resources/jquery.js"></script>
-<script type="text/javascript" src="resources/responsive-modernizr.js"></script>
-<script type="text/javascript" src="js/d3.v2.js"></script>
-<script type="text/javascript" src="js/jquery.tipTip.js"></script>
-<script type="text/javascript" src="js/jquery.tipTip.minified.js"></script>
-<script>
-var dpartya=[];
-function showurl(){
-	var curl = decodeURIComponent(d3.select("iframe").attr("src"));
-	var file =	curl.substring(0,curl.indexOf('.php'))+'.php';
-	var field=  curl.substring(curl.indexOf('?')+7,curl.indexOf('&'));
-	var state=  curl.substring(curl.indexOf("state")+6);state=state.substring(0,state.indexOf('&'));
-	var field2= curl.substring(curl.indexOf("field2")+7);field2=field2.substring(0,field2.indexOf('&'));
-	var party = curl.substring(curl.indexOf('party=')+6);
-	console.log([curl,file,field,state,field2,party]);
-	return [curl,file,field,state,field2,party];
-}
-function add_bc(){
-				var d=decodeURIComponent($('#partyf')[0].options[$('#partyf')[0].selectedIndex].value)
-				if (d=="All") {dpartya=[];
-				d3.select('#dpartyfs').html('');
-				}
-				if(dpartya.indexOf(d)==-1 && dpartya.indexOf('All')==-1){ 
-					dpartya=dpartya.concat(d);
-					var sug = d3.select('#dpartyfs').append('div').style('background-color','rgba(230,230,230,0.9)').style('font-size','smaller').style('padding','1px 8px').style('margin','2px 0px').attr('name',d).html(d).style('text-align','left');
-						sug.append('div').style('background-color','rgba(1,1,1,0)').style('float','right').style('padding','0px 5px').html('X').on('click',function(){sug.remove();
-								delete dpartya[dpartya.indexOf(d)];
-									  var get=showurl();
-									  var pp='';
-									  for( f in dpartya){
-										  if(dpartya[f]!='All'){
-										  pp+="\""+dpartya[f]+"\"";
-										  }
-										  else this.selectedIndex=0;
-										  if (f!=dpartya.length-1)
-										  pp+=","	;
-									  }		
-									  d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+"&party="+pp));
-								}).on('mouseover',crosshover).on('mouseout',crossout);						
-					function crosshover(d){
-						d3.select(this).style('background-color','rgba(1,1,1,0.25)');
-						d3.select(this).style('cursor','pointer');
-						}
-					function crossout(d){
-						d3.select(this).style('background-color','rgba(1,1,1,0)')
-					}
-					//console.log(dpartya);
-				}
-		}
-     $(function() {
-		$( "#radioset" ).buttonset();
 
-//		$('#add_b').click(add_bc)
-		
-	});
-</script>
+  <link rel="icon" type="image/ico" href="recources/favicon.png"></link>
+  <link rel="shortcut icon" href="resources/favicon.png"></link>
+  
+  <link rel="stylesheet" id="admin-bar-css" href="resources/admin-bar.css" type="text/css" media="all">
+  <link rel="stylesheet" id="responsive-style-css" href="resources/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="css/styles.css" type="text/css">
+  <link rel="stylesheet" href="css/ui-darkness/jquery-ui-1.8.23.custom.css">
+  <link rel="stylesheet" href="css/button.css">
+  
+  <script src="js/jquery-1.8.1.js"></script>
+  <script src="js/jquery-ui-1.8.23.custom.min.js"></script>
+  <script type="text/javascript" src="resources/jquery.js"></script>
+  <script type="text/javascript" src="resources/responsive-modernizr.js"></script>
+  <script type="text/javascript" src="js/d3.v2.js"></script>
+  <script type="text/javascript" src="js/jquery.tipTip.js"></script>
+  <script type="text/javascript" src="js/jquery.tipTip.minified.js"></script>
+  <script>
+  var dpartya=[];
+  var dstatea=[];
+  function showurl(){
+      var curl = decodeURIComponent(d3.select("iframe").attr("src"));
+      var file =	curl.substring(0,curl.indexOf('.php'))+'.php';
+      var field=  curl.substring(curl.indexOf('?')+7,curl.indexOf('&'));
+      var state=  curl.substring(curl.indexOf("state")+6);state=state.substring(0,state.indexOf('&'));
+      var field2= curl.substring(curl.indexOf("field2")+7);field2=field2.substring(0,field2.indexOf('&'));
+      var party = curl.substring(curl.indexOf('party=')+6);
+      console.log([curl,file,field,state,field2,party]);
+      return [curl,file,field,state,field2,party];
+  }
+  function add_bc(){
+                  var d=decodeURIComponent($('#partyf')[0].options[$('#partyf')[0].selectedIndex].value)
+                  if (d=="All") {dpartya=[];
+                  d3.select('#dpartyfs').html('');
+                  }
+                  if(dpartya.indexOf(d)==-1 && dpartya.indexOf('All')==-1){ 
+                      dpartya=dpartya.concat(d);
+                      var sug = d3.select('#dpartyfs').append('div').style('background-color','rgba(230,230,230,0.9)').style('font-size','smaller').style('padding','1px 8px').style('margin','2px 0px').attr('name',d).html(d).style('text-align','left');
+                          sug.append('div').style('background-color','rgba(1,1,1,0)').style('float','right').style('padding','0px 5px').html('X').on('click',function(){
+							  sug.remove();delete dpartya[dpartya.indexOf(d)];
+							  var get=showurl();
+							  var pp='';
+							  for( f in dpartya){
+								  if(dpartya[f]!='All')pp+="\""+dpartya[f]+"\"";
+								  else this.selectedIndex=0;
+								  if (f!=dpartya.length-1)
+								  pp+=","	;
+							  }		
+							  d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+"&party="+pp));
+                      }).on('mouseover',crosshover).on('mouseout',crossout);						
+                      function crosshover(d){
+                          d3.select(this).style('background-color','rgba(1,1,1,0.25)');
+                          d3.select(this).style('cursor','pointer');
+                      }
+                      function crossout(d){
+                          d3.select(this).style('background-color','rgba(1,1,1,0)')
+                      }
+                  }
+          }
+  function add_pc(){
+                  var d=decodeURIComponent($('#statef')[0].options[$('#statef')[0].selectedIndex].value)
+                  if (d=="All") {dstatea=[];
+                  d3.select('#dstatefs').html('');
+                  }
+                  if(dstatea.indexOf(d)==-1 && dstatea.indexOf('All')==-1){ 
+                      dstatea=dstatea.concat(d);
+                      var sug = d3.select('#dstatefs').append('div').style('background-color','rgba(230,230,230,0.9)').style('font-size','smaller').style('padding','1px 8px').style('margin','2px 0px').attr('name',d).html(d).style('text-align','left');
+                          sug.append('div').style('background-color','rgba(1,1,1,0)').style('float','right').style('padding','0px 5px').html('X').on('click',function(){
+							  sug.remove();delete dstatea[dstatea.indexOf(d)];
+							  var get=showurl();
+							  var pp='';
+							  for( f in dstatea){
+								  if(dstatea[f]!='All')pp+="\""+dstatea[f]+"\"";
+								  else this.selectedIndex=0;
+								  if (f!=dstatea.length-1)
+								  pp+=","	;
+							  }		
+							  d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+"&party="+pp));
+                      }).on('mouseover',crosshover).on('mouseout',crossout);						
+                      function crosshover(d){
+                          d3.select(this).style('background-color','rgba(1,1,1,0.25)');
+                          d3.select(this).style('cursor','pointer');
+                      }
+                      function crossout(d){
+                          d3.select(this).style('background-color','rgba(1,1,1,0)')
+                      }
+                  }
+          }
+		  
+   $(function() { $( "#radioset" ).buttonset();  });
+  </script>
 <style type="text/css" media="print">
 #wpadminbar {
 	display:none;

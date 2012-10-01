@@ -29,9 +29,10 @@
           <div style="float:left;clear:left;margin-bottom:0px"><label for="xfield" >X-axis</label><select name="xfield" id="xfield" style="width:120px"></select></div>
           <div style="float:right;clear:right;margin-bottom:0px"><label for="yfield" >Y-axis</label><select name="yfield" id="yfield" style="width:120px"></select></div>
       </div>
-      	  <div id="dstatef" style="float:left;clear:left;" class="panelf"><label for="statef" >State</label><select name="statef" id="statef" style="width:270px"></select></div><br />
+      	  <div id="dstatef" style="float:left;clear:left;" class="panelf"><label for="statef" >State</label><select name="statef" id="statef" style="width:270px"></select> <div id="dstatefs" style="max-height:50px"></div></div><br />
       	  <div id="dpartyf" style="float:left;clear:left;text-align:center" class="panelf" ><label for="partyf" style="text-align:left">Political Party</label><select name="partyf" id="partyf" style="width:270px"></select>
-          <!--button id="add_b" style="height:25px;margin-top:2px;border-radius:5px;font-family:Segoe UI, Arial, sans-serif; padding-top:4px;font-size:13px">+Add</button--><div id="dpartyfs" style="max-height:50px"></div></div>
+          <div id="dpartyfs" style="max-height:50px"></div>
+         </div>
 
     </div>
   </div>

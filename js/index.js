@@ -63,16 +63,28 @@ function initall() {
 			d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+this.options[this.selectedIndex].value+"&state="+get[3]+"&field2="+get[4]+'&party='+get[5]));
 		}
 		function setstate(){
-			var get=showurl();
 			var v=decodeURIComponent(this.options[this.selectedIndex].value);
-			if(this.options[this.selectedIndex].value!='All') d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state='"+v+"'&field2="+get[4]+'&party='+get[5]));
-			else d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+"&field2="+get[4]+'&party='+get[5]));
+			var get=showurl();
+			console.log('yo->',v);
+			add_pc();
+			var vv='';
+			for (f in dstatea){
+				if(dstatea[f]!='All'){
+				vv+="\""+dstatea[f]+"\"";
+				}
+				else this.selectedIndex=0;
+				if (f!=dstatea.length-1)
+				vv+=","	;
+				}
+			d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+vv+"&field2="+get[4]+'&party='+get[5]));
+			//if(this.options[this.selectedIndex].value!='All') 
+			//else d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+"&field2="+get[4]+'&party='+get[5]));
 		}
 		function setparty(){
 			var p=decodeURIComponent(this.options[this.selectedIndex].value);
 			var get=showurl();
 			add_bc();
-			console.log(dpartya);	
+//			console.log(dpartya);	
 			var pp='';
 			for( f in dpartya){
 				if(dpartya[f]!='All'){
@@ -156,7 +168,7 @@ function initall() {
 				if (blocked_fields.indexOf(field) < 0) sel_field.innerHTML += "	<option value=\'" + escape(field) + "\'>" + field + "</option>";
 			}
 
-			document.getElementById("xfield").selectedIndex = 0;
+			document.getElementById("xfield").selectedIndex = 1;
 			var get=showurl();
 			d3.select("iframe").attr("src", encodeURI("pie.php"+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+'&party='+get[5]));		
 			//getdhw();
