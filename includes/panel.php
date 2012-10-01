@@ -7,7 +7,7 @@
 }
 </style>
 
-<div class="panel" >
+<div class="panel" >	
   <div class="widget-wrapper" style="height:400px">
     <div class="widget-title-home" >
       <h3>Panel</h3>
@@ -25,15 +25,13 @@
         <input type="radio" name="graphs" id="graphs_4" graph="bars"/>
         <label for="graphs_4">Bar</label>
       </div>
-      <div class='noborder'>
-      <br/>
-          <div style="float:left;clear:left;margin-bottom:20px"><label for="xfield" >X-axis</label><select name="xfield" id="xfield" style="width:120px"></select></div>
-          <div style="float:right;clear:right;margin-bottom:20px"><label for="yfield" >Y-axis</label><select name="yfield" id="yfield" style="width:120px"></select></div>
+      <div style="overflow:auto" class="panelf">
+          <div style="float:left;clear:left;margin-bottom:0px"><label for="xfield" >X-axis</label><select name="xfield" id="xfield" style="width:120px"></select></div>
+          <div style="float:right;clear:right;margin-bottom:0px"><label for="yfield" >Y-axis</label><select name="yfield" id="yfield" style="width:120px"></select></div>
       </div>
-      <div class="noborder">
-      	  <div style="float:left;clear:left;margin-bottom:20px"><label for="statef" >State</label><select name="statef" id="statef" style="width:290px"></select></div><br />
-      	  <div style="float:left;clear:left;margin-bottom:20px"><label for="partyf" >Political Party</label><select name="partyf" id="partyf" style="width:290px"></select></div>
-      </div>
+      	  <div id="dstatef" style="float:left;clear:left;" class="panelf"><label for="statef" >State</label><select name="statef" id="statef" style="width:270px"></select></div><br />
+      	  <div id="dpartyf" style="float:left;clear:left;text-align:center" class="panelf"><label for="partyf" style="text-align:left">Political Party</label><select name="partyf" id="partyf" style="width:270px"></select><button id="add_b" style="height:25px;margin-top:2px;border-radius:5px;font-family:Segoe UI, Arial, sans-serif; padding-top:4px;font-size:13px">+Add</button></div>
+
     </div>
   </div>
   <!-- end of .widget-wrapper --> 

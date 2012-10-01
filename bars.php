@@ -33,7 +33,7 @@ stroke: black;
         }
     </style>
   </head>
-  <body style="text-align:left">
+  <body style="text-align:left;width:1000px">
     <script src="js/d3.v2.js"></script>
     <script type="text/javascript">
 <?php
@@ -63,7 +63,7 @@ stroke: black;
                 ?>',
         sortby = true, //sortby = true for sortby value, false for label
         data_max = 0;
-        console.log(stateFilt);
+//        console.log(stateFilt);
 
     if('<?php
         getvar('sort','x')

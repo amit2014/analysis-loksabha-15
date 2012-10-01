@@ -12,7 +12,7 @@
 <link href="css/styles.css" rel="stylesheet" type="text/css">
 <!--link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.8.23.custom.css"-->
 <link rel="stylesheet" href="css/ui-darkness/jquery-ui-1.8.23.custom.css">
-<link rel="stylesheet" href="css/tipTip.css">
+<link rel="stylesheet" href="css/button.css">
 <script src="js/jquery-1.8.1.js"></script>
 <script src="js/jquery-ui-1.8.23.custom.min.js"></script>
 <script type="text/javascript" src="resources/jquery.js"></script>
@@ -23,6 +23,18 @@
 <script>
      $(function() {
 		$( "#radioset" ).buttonset();
+		var dpartya=[];
+		$('#add_b').click(function(){
+				var d=decodeURIComponent($('#partyf')[0].options[$('#partyf')[0].selectedIndex].value)
+
+				if(dpartya.indexOf(d)==-1){ 
+				dpartya=dpartya.concat(d);
+	//			console.log(dpartya);
+//				d3.select('#dpartyf').append('div').style('background-color','#f3f').html(d).click(on;						
+				}
+//				console.log();
+
+			})
 	});
 </script>
       
