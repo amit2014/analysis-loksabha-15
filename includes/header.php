@@ -3,10 +3,11 @@
     <!-- end of #logo -->
     
     <ul class="menu l_tinynav1">
-      <li class="current_page_item"><a href="index.php" title="Home">Home</a></li>
-      <li class="page_item page-item-2"><a href="map.php" title="Map of India">State wise Distribution</a></li>
-      <li class="page_item page-item-2"><a href="imp_plot.php" title="Important Plots">Important Plots</a></li>
-      <li class="page_item page-item-2"><a href="dataset.php" title="Dataset">Dataset</a></li>
+      <li class="current_page_item"><a href="index.php">Home</a></li>
+      <li class="page_item page-item-2"><a href="map.php">State wise Distribution</a></li>
+      <li class="page_item page-item-2"><a href="imp_plot.php">State-Party Mash Up</a></li>
+      <li class="page_item page-item-2"><a href="imp_plot.php">Scatter Plot Matrix</a></li>
+      <li class="page_item page-item-2"><a href="dataset.php">Dataset</a></li>
     </ul>
     <select class="tinynav tinynav1">
       <option value="#" selected="selected">Home</option>
