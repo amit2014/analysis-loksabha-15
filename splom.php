@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-    <title>Scatterplot Matrix</title>
+<meta charset="utf-8">
+<html lang="en-US">
+<?php include("includes/head.php"); ?>
+<body class="home blog logged-in admin-bar custom-background customize-support">
+<div id="container" class="hfeed">
+  <?php include("includes/header.php"); ?>  
+  <div id="wrapper" class="clearfix">
+<div class="home-widgets">
+      <?php include("includes/panel.php"); ?>
+    </div>
+    <div class="splom" id="featured" style="width: 800px;">
     <script type="text/javascript" src="d3.v2.js"></script>
     <link type="text/css" rel="stylesheet" href="css/splom.css"/>
-  </head>
-  <body>
-    <div id="chart"></div>
     <script type="text/javascript">
           <?php
         function getvar($vname)  { 
@@ -81,9 +85,11 @@ console.log(stateFilt);
             .on("brushend", brushend);
 
         // Root panel.
-        var svg = d3.select("#chart").append("svg")
-            .attr("width", size * n + padding + 500)
-            .attr("height", size * n + padding);
+        var svg = d3.select("#featured").append("svg")
+            .attr("width", size * n + padding + 50)
+            .attr("height", size * n + padding + 20)
+            .append("g")
+            .attr("transform", "translate(50, 20)");
 
 
         // X-axis.
@@ -185,5 +191,13 @@ console.log(stateFilt);
       });
 
     </script>
-  </body>
+</div>
+  </div>
+  <!-- end of #wrapper --> 
+</div>
+<!-- end of #container -->
+<?php include("includes/footer.php"); ?>
+<?php include("includes/adminbar.php"); ?>
+</div>
+</body>
 </html>

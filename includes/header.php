@@ -5,8 +5,8 @@
     <ul class="menu l_tinynav1">
       <li class="current_page_item"><a href="index.php">Home</a></li>
       <li class="page_item page-item-2"><a href="map.php">State wise Distribution</a></li>
-      <li class="page_item page-item-2"><a href="imp_plot.php">State-Party Mash Up</a></li>
-      <li class="page_item page-item-2"><a href="imp_plot.php">Scatter Plot Matrix</a></li>
+      <li class="page_item page-item-2"><a href="mash.php">State-Party Mash Up</a></li>
+      <li class="page_item page-item-2"><a href="splom.php">Scatter Plot Matrix</a></li>
       <li class="page_item page-item-2"><a href="dataset.php">Dataset</a></li>
     </ul>
     <select class="tinynav tinynav1">

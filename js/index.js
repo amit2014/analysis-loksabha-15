@@ -5,9 +5,10 @@ function initall() {
 	d3.csv("MPTrack.csv", function(data) {
 		//Setting xfield up
 		var sel_field = document.getElementById("xfield");
-		var blocked_fields = ["MP name", "Nature of membership", "Start of term", "End of term", "State", "Constituency", "Political party", "Gender", "Educational qualifications", 			"Educational qualifications - details", "Private Member Bills", "Notes", "National Debates average", "National Private Member Bills average", 
-			"National Questions average", "National Attendance average", "State's Debates average", "State's Private Member Bills  average", "State's Questions average", 
-			"State's Attendance average"];
+		var blocked_fields = ["MP name", "Nature of membership", "Start of term", "End of term", "State", "Constituency", "Political party", "Gender", 
+		"Educational qualifications", "Educational qualifications - details", "Private Member Bills", "Notes", "National Debates average", 
+		"National Private Member Bills average", "National Questions average", "National Attendance average", "State's Debates average", 
+		"State's Private Member Bills  average", "State's Questions average", "State's Attendance average"];
 		sel_field.innerHTML = "";
 		for (field in data[0]) {
 			if (blocked_fields.indexOf(field) < 0) 
@@ -100,6 +101,14 @@ function initall() {
 		}
 		//*****************
 		
+		$('#featured').css('overflow','hidden');
+		document.getElementById("yfield").innerHTML= "<option value=\'"+escape("")+"\'>Frequency</options>";
+		d3.select('#statef').attr('disabled',null);
+		d3.select('#xfield').attr('disabled',null);
+		d3.select('#yfield').attr('disabled','disabled');
+		d3.select('#partyf').attr('disabled',null);
+			
+
 		function getdhw(){
 	
 	var f= document.getElementById("frame").style;

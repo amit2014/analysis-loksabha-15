@@ -16,4 +16,3 @@ TODO CSP ASSIGNMENT 2
 	g. Bar chart
 		iv. Sorting
 		v. Incorporate radio buttons to view frequency as absolute numbers or percentage
-6. Incorporate mash up & splom into the page
