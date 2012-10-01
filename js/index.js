@@ -48,9 +48,14 @@ function initall() {
 		//Setting onchange functions of dropdowns
 		document.getElementById("xfield").selectedIndex = 0;
 		document.getElementById("yfield").innerHTML = '<option value="Frequency">Frequency</option>';
+		document.getElementById("yfield").onchange = setfield2;
 		document.getElementById("xfield").onchange = setfield;
 		document.getElementById('statef').onchange = setstate;
 		document.getElementById('partyf').onchange = setparty;
+		function setfield2(){
+			var get=showurl();
+			d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+get[3]+"&field2="+this.options[this.selectedIndex].value+'&party='+get[5]));
+		}
 		function showurl(){
 			var curl = decodeURIComponent(d3.select("iframe").attr("src"));
 			var file =	curl.substring(0,curl.indexOf('.php'))+'.php';
@@ -158,14 +163,14 @@ function initall() {
 			d3.select('#xfield').attr('disabled',null);
 			d3.select('#yfield').attr('disabled',null);
 			d3.select('#partyf').attr('disabled',null);
-			var sel_field = document.getElementById("xfield");
+			var x_field = document.getElementById("xfield");
 			var y_field = document.getElementById("yfield");
-			var blocked_fields = ["MP name", "Nature of membership", "Start of term", "End of term", "State", "Constituency", "Political party", "Gender", "Educational qualifications", "Educational qualifications - details", "Private Member Bills", "Notes", "National Debates average", "National Private Member Bills average", "National Questions average", "National Attendance average", "State's Debates average", "State's Private Member Bills  average", "State's Questions average", "State's Attendance average"];
-			sel_field.innerHTML = "";
+			var avx_fields = ["Age","Attendance","Debates","Questions"];
+			x_field.innerHTML = "";
 			y_field.innerHTML = "";
-			for (field in data[0]) {
-				if (blocked_fields.indexOf(field) < 0) {sel_field.innerHTML += "<option value=\'" + escape(field) +"\'>" + field + "</option>";
-				y_field.innerHTML += "<option value=\'" + escape(field) +"\'>" + field + "</option>";}
+			for (field in avx_fields) {
+				 {x_field.innerHTML += "<option value=\'" + escape(avx_fields[field]) +"\'>" + avx_fields[field] + "</option>";
+				y_field.innerHTML += "<option value=\'" + escape(avx_fields[field]) +"\'>" + avx_fields[field] + "</option>";}
 			}
 			document.getElementById("xfield").selectedIndex = 0;
 			document.getElementById("yfield").selectedIndex = 3;
