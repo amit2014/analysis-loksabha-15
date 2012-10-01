@@ -80,13 +80,14 @@ var partyFilt = [<?php
   console.log(partyFilt);
   //get distinct parties & states
   for (var i = mps.length - 1; i >= 0; i--) {
-    if(mps[i][f1].length > 0 && (partyFilt.length == 0 || partyFilt.indexOf(mps[i]["Political party"]) >= 0))  {
+    if(mps[i][f1].length > 0)  {
       if (statesD[mps[i][f1]] == undefined)
         statesD[mps[i][f1]] = 1;
       else
         statesD[mps[i][f1]]++;
-      partiesD[mps[i][f2]] = true;
     }
+    if (mps[i][f2].length > 0 && (partyFilt.length == 0 || partyFilt.indexOf(mps[i][f2]) >= 0))
+      partiesD[mps[i][f2]] = true;
   }
 
   //sort states into an array
