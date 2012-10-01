@@ -1,50 +1,19 @@
-                                                                     
-                                                                     
-                                                                     
-                                             
-I went through the index.php page. Following are some of the improvements I feel are required in the page. Please look into the same. :)
-
 TODO CSP ASSIGNMENT 2
 
 1. Design a home page
 2. Data Set Tab <--> instead of putting up the entire data set, either provide download link or link to google docs
 3. Statewise Distribution Tab
 	a. remove search or introduce functionality
-	b. remove hyperlink from party names
 	c. provide a total seats in state statistic in addition to individual parties
 	d. remove Posted on September 12, 2012 by admin — No Comments ↓
 	e. when no state is selected, provide info about whole of india and its political party distribution (discuss?)
-	f. keep color of state changed even when no state is directly pointed to (either this or e)
 4. Move home page to important plots
-5. Current Home Page to be Important Plots
 	a. What goes under the three home widgets?
-	b. Histograms
-		i. Incorporate state and political party filters into all histograms
-		ii. no need of y-axis drop down
 	c. Pie Chart
 		i. Instead of percentage, show absolute values and numbers or better still, provide functionality to user in the form of a radio button
-		ii. remove y-axis drop down menu
-		iii. Incorporate state and political party filters
-		iv. jab histogram se pie chart pe shift karte hain, tab 100% undefined aata hai, after changing x-axis drop down, correct waala aata hai, look into it
 		v. change label of 'x-axis' to 'parameter'
-	d. change from pie chart to histogram mein graph khaali aata hai
-	e. Scatter Plot
-		i. do not put any points on the y axis --> (translate graph slightly to the right?)
-		ii. scatter plots for various other parameters bhi lao, refer to analysis tab names for all scatter plots that are needed.
-			x-axis : ordinals like educational qualification(grad,post grad etc), sex, age, region (north,south,east,west), state size (big,small), alliances (upa,nda,third front), state, political party
-			y-axis : performance parameters like attendance, questions, debates, bills, educational qualifications (using parameter values given to shivanker 0-6)
 		iii. if possible, make lines in the scatter plot of a different colour in order to divide the plot into groups
-		iv. No need of filters in scatter plots
-	f. Area chart
-		i. No need of filters
-		ii. no need of y-axis drop down menu
-		iii. y-axis labels on the left
-		iv. x-axis pe khaali do options do: political party and state
-		v. current x-axis ke dropdown ka naam change karke 'performance parameter' rakh do. Andar ki values sahi hain
 	g. Bar chart
-		i. x-axis pe hamesha frequency hi rahegi, so no need to provide dropdown menu for that
-		ii. y-axis pe ordinals aayenge, change all options. for list of ordinals refer to 5.e.ii
-		iii. increase size of bar and text. Text is not visible at all
-		iv. Incorporate functionalitoes to sort either in alphabetical orders of ordinals or in the descending order of their frequencies
+		iv. Sorting
 		v. Incorporate radio buttons to view frequency as absolute numbers or percentage
-6. Incorporate mash up into the page
+6. Incorporate mash up & splom into the page
