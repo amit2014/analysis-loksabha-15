@@ -54,10 +54,10 @@ circle {
 var data = [],
     dict = {},
     fx = '<?php
-          getvar('xfield',"Age");
+          getvar('field',"Age");
           ?>',
     fy = '<?php
-          getvar('field',"Attendance");
+          getvar('field2',"Attendance");
           ?>';
 dict[fx] = [];
 dict[fy] = [];
