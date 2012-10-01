@@ -93,11 +93,12 @@ function histogramChart(field) {
           .call(yAxisRight);
       svg.append("text")
         .attr("class", "x label")
-        .attr("x", (width/2)-(field.length/2)-75)
-        .attr("y", height-20)
+        .attr("x", (width/2)-(field.length/2)*17 - 100)
+        .attr("y", height-10)
         .attr("font-size", 17)
         .attr("stroke-width", 9)
-        .text(field+(state==''?" ( All )": " ( "+state+" ) "));
+		.attr("font-family",'-webkit-body')
+        .text(field+" of MP's of "+(party==''?' All Parties ': " "+party+" ")+" in "+(state==''?'  All States': " "+state+" "));
     });
   }
 
