@@ -29,7 +29,7 @@ function getvar($vname, $deflt)  {
 	var data = [];
 	d3.csv("MPTrack.csv", function(mps) {
 		var fieldd = [];
-		console.log('->',field,state.length,party.length);
+		
 		for (var j = mps.length - 1; j >= 0; j--) {
 			var key = mps[j][field];
 			
@@ -43,24 +43,6 @@ function getvar($vname, $deflt)  {
 			}
 		}
 	}
-		/*for (var i = mps.length - 1; i >= 0; i--) {
-		 if (mps[i]["Age"]>70)
-		 data[0]++;
-		 else if (mps[i]["Age"]>50)
-		 data[1]++;
-		 else if (mps[i]["Age"]>30)
-		 data[2]++;
-		 else
-		 data[3]++;
-		 }*/
-	//	console.log(data);
-	//	console.log(fieldd);
-		/*var colors = [];
-		 var color = Math.random()*360, off = 4*360/39;
-		 for(var i = 1; i <= 50; ++i)
-		 colors.push( "hsl(" + ((color+off*i)%360) + ", 60%, 60%)");
-		 var z = d3.scale.ordinal()
-		 .range(colors);*/
 		var width = 400,
 			height = 400,
 			outerRadius = Math.min(width, height) / 2,
@@ -74,11 +56,16 @@ function getvar($vname, $deflt)  {
 
 
 		var vis = d3.select("div").append("svg").data([data]).attr("width", width).attr("height", height).attr("style","float:left;");
-
+		d3.select("div").append('div').attr('id','legend').style('float','left').style('width','340px').style('padding-left','90px').style('max-height','400px').style('overflow','auto');
 		var arcs = vis.selectAll("g.arc").data(donut).enter().append("g").attr("class", "arc").attr("transform", "translate(" + radius + "," + radius + ")");
 
 		var paths = arcs.append("path").attr("style","stroke:#000; stroke-width:0.2")
 			.attr("fill", function(d, i) {
+				var l=d3.select('#legend');
+				var e=l.append('div').style('width','340px').style('height','20px').style('border','thin black solid').style('margin-top','1px').style('border-collapse','collapse').style('float','right').style('text-align','left').style('font-size','smaller');
+				var d=e.append('div').style('width','40px').style('height','20px').style('border','thin').style('float','left').style('background-color',color(i));
+				e.html(e.html()+fieldd[i]+': '+(data[i]*100/sum()).toFixed(2)+'%'+' ('+data[i]+')');
+
 				return color(i);
 			}).on("mouseover", function(d, i) {
 				vis.selectAll("path").filter(function(d, j) {
@@ -93,31 +80,6 @@ function getvar($vname, $deflt)  {
 			});
 		function sum(){var sum=0;for(i in data){ sum+=data[i];}return sum;}
 		paths.append("title").text(function(d,i){return fieldd[i]+': '+(data[i]*100/sum()).toFixed(2)+'%'+' ('+data[i]+')'});
-		var j=$('path');
-		for (l in j){
-		d3.select("div").append("div").data([data]).attr("id","leg").attr("style","background-color:#faf;width;300px;height:400px;float:left");
-		//console.log(j.text());
-		}
-			
-		
-		
-		
-
-
-		/*arcs.append("text")
-		 .attr("transform", function(d) { return "translate(" + arc2.centroid(d) + ")"; })
-		 .attr("dy", ".35em")
-		 .attr("text-anchor", "middle")
-		 .attr("display", function(d) { return d.value > .15 ? null : "none"; })
-		 .text(function(d, i) { 
-		 return fieldd[i];
-		 });*/
-		//d3.select("body").append("br");
-/*		d3.select("body").selectAll("span").data(fieldd).enter().append("span").attr("style", function(d, i) {
-				return " font-size:12px; " + "color:" + color(i)
-			}).html(function(d, i) {
-				return d + ':' + data[i] + '<br/>'
-			});*/
 
 
 		paths.transition().ease("linear").duration(500).attrTween("d", tweenPie);
