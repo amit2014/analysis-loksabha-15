@@ -33,7 +33,7 @@ stroke: black;
         }
     </style>
   </head>
-  <body style="text-align:left;width:1000px">
+  <body style="text-align:left;width:700px;margin-right:8px">
     <script src="js/d3.v2.js"></script>
     <script type="text/javascript">
 <?php

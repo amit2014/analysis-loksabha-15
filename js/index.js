@@ -56,18 +56,8 @@ function initall() {
 			var get=showurl();
 			var v=decodeURIComponent(this.options[this.selectedIndex].value);
 			d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+get[3]+"&field2="+v+'&party='+get[5]));
-			//console.log(encodeURI(get[1]+"?field="+get[2]+"&state="+get[3]+"&field2="+v+'&party='+get[5]));
 		}
-		function showurl(){
-			var curl = decodeURIComponent(d3.select("iframe").attr("src"));
-			var file =	curl.substring(0,curl.indexOf('.php'))+'.php';
-			var field=  curl.substring(curl.indexOf('?')+7,curl.indexOf('&'));
-			var state=  curl.substring(curl.indexOf("state")+6);state=state.substring(0,state.indexOf('&'));
-			var field2= curl.substring(curl.indexOf("field2")+7);field2=field2.substring(0,field2.indexOf('&'));
-			var party = curl.substring(curl.indexOf('party=')+6);
-			console.log([curl,file,field,state,field2,party]);
-			return [curl,file,field,state,field2,party];
-		}
+
 		function setfield() {
 			var get=showurl();
 			d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+this.options[this.selectedIndex].value+"&state="+get[3]+"&field2="+get[4]+'&party='+get[5]));
@@ -79,9 +69,22 @@ function initall() {
 			else d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+"&field2="+get[4]+'&party='+get[5]));
 		}
 		function setparty(){
+			var p=decodeURIComponent(this.options[this.selectedIndex].value);
 			var get=showurl();
-			if(this.options[this.selectedIndex].value!='All') d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+"&party='"+decodeURIComponent(this.options[this.selectedIndex].value)+"'"));
-			else d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+'&party='));
+			add_bc();
+			console.log(dpartya);	
+			var pp='';
+			for( f in dpartya){
+				if(dpartya[f]!='All'){
+				pp+="\""+dpartya[f]+"\"";
+				}
+				else this.selectedIndex=0;
+				if (f!=dpartya.length-1)
+				pp+=","	;
+			}		
+			d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+"&party="+pp));
+			//if(this.options[this.selectedIndex].value!='All') 
+			//else d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+'&party='));
 		}
 		//*****************
 		
@@ -140,7 +143,7 @@ function initall() {
 
 		document.getElementById("graphs_1").onchange = function(e) {
 			$('#featured').css('overflow','hidden');
-			document.getElementById("yfield").innerHTML= "<option value=\'"+escape("")+"\'>Frequency</options>";
+			document.getElementById("yfield").innerHTML= "<option value=\'"+escape("")+"\'>None</options>";
 			d3.select('#statef').attr('disabled',null);
 			d3.select('#xfield').attr('disabled',null);
 			d3.select('#yfield').attr('disabled','disabled');
@@ -178,7 +181,7 @@ function initall() {
 			document.getElementById("yfield").selectedIndex = 1;
 			
 			var get=showurl();
-			d3.select("iframe").attr("src", encodeURI("brush.php"+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+'&party='+get[5]));		
+			d3.select("iframe").attr("src", encodeURI("brush.php"+"?field=Age"+"&state="+get[3]+"&field2=Attendance"+'&party='+get[5]));		
 			//getdhw();
 		}
 
@@ -198,8 +201,8 @@ function initall() {
 		}
 
 		document.getElementById("graphs_4").onchange = function(e) {
-			$('#featured').css('overflow','scroll');
-			$('#featured').css('overflow-x','hidden');
+			$('#frame').css('height','150%');
+			$('#frame').css('width','142%');
  			d3.select('#statef').attr('disabled',null);
 			d3.select('#xfield').attr('disabled',null);
 			d3.select('#yfield').attr('disabled',null);
@@ -219,8 +222,7 @@ function initall() {
 			document.getElementById("xfield").selectedIndex = 0;
 			document.getElementById("yfield").selectedIndex = 1;
 			var get=showurl();
-			d3.select("iframe").attr("src", encodeURI("bars.php"+"?field="+get[2]+"&state="+get[3]+"&field2=State"+'&party='+get[5]));		
-			$('#frame').css('height','1800px');
+			d3.select("iframe").attr("src", encodeURI("bars.php"+"?field="+"&state="+get[3]+"&field2=State"+'&party='+get[5]));		
 			//getdhw();
 		}
 	});

@@ -9,7 +9,7 @@
 	<?php include("includes/featured.php"); ?>
     <div id="widgets" class="home-widgets" >
 	  <?php include("includes/panel.php"); ?>
-	  <?php include("includes/widgets.php"); ?>
+	  <?php //include("includes/widgets.php"); ?>
     </div><!-- end of #widgets -->
   </div><!-- end of #wrapper --> 
 </div><!-- end of #container -->

@@ -1,13 +1,16 @@
 @charset "utf-8";
 .panel {
 	float: right;
-	width: 28%;
+	width: 29%;
 	height: auto;
 	min-height: 400px;
+	overflow:auto;
 }
 .panelf {
 	padding: 10px;
 	border-radius:3px;
 	margin-top:10px;margin-bottom:10px;
 	border:thin ridge #CCC;
+	overflow:auto;
+	width:270px;
 }

@@ -49,8 +49,6 @@
       getvar('party','');
       ?>]; 
   var distribution = [];
-  console.log(state);
-  console.log(party);
   d3.csv("MPTrack.csv",function(mps) {
     for (var i = mps.length - 1; i >= 0; i--) {
       mps[i][field] = parseFloat(mps[i][field]);

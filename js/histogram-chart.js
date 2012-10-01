@@ -98,7 +98,9 @@ function histogramChart(field) {
         .attr("font-size", 17)
         .attr("stroke-width", 9)
 		.attr("font-family",'-webkit-body')
-        .text(field+" of MP's of "+(party==''?' All Parties ': " "+party+" ")+" in "+(state==''?'  All States': " "+state+" "));
+        .text(field+" of MP's of "+
+		//(party==''?' All Parties ': " "+party+" ")+
+		" in "+(state==''?'  All States': " "+state+" "));
     });
   }
 
