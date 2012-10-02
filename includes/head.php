@@ -81,34 +81,71 @@
                     }
               	  }
           }
+
+//["Madhya Pradesh", "Chhattisgarh"]
+  
+  var north = ["Uttar Pradesh", "Rajasthan", "Haryana", "Punjab", "Delhi", "Uttarakhand", "Jammu and Kashmir", "Chandigarh", "Himachal Pradesh"];
+  var west = ["Maharashtra", "Gujarat", "Goa", "Dadra and Nagar Haveli", "Daman and Diu"];
+  var south = ["Andaman and Nicobar Islands", "Andhra Pradesh", "Kerala", "Tamil Nadu", "Karnataka", "Lakshadweep", "Puducherry"];
+  var east = ["Orissa", "West Bengal", "Bihar", "Jharkhand"];
+  var ne = ["Assam", "Arunachal Pradesh", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Sikkim", "Tripura"];
+
   function add_pc(){
                   var d=decodeURIComponent($('#statef')[0].options[$('#statef')[0].selectedIndex].value)
-                  if (d=="All") {dstatea=[];
-                  d3.select('#dstatefs').html('');
+                  if (d=="All") {
+                  	dstatea=[];
+                  	d3.select('#dstatefs').html('');
+                  	// addo2(d);
                   }
-                  if(dstatea.indexOf(d)==-1 && d!='All'){ 
-                      dstatea=dstatea.concat(d);
-                      var sug = d3.select('#dstatefs').append('div').style('background-color','rgba(230,230,230,0.9)').style('font-size','smaller').style('padding','1px 8px').style('margin','2px 0px').attr('name',d).html(d).style('text-align','left');
-                          sug.append('div').style('background-color','rgba(1,1,1,0)').style('float','right').style('padding','0px 5px').html('X').on('click',function(){
-							  sug.remove();delete dstatea[dstatea.indexOf(d)];
-							  var get=showurl();
-							  var pp='';
-							  for( f in dstatea){
-								  if(dstatea[f]!='All')pp+="\""+dstatea[f]+"\"";
-								  else this.selectedIndex=0;
-								  if (f!=dstatea.length-1)
-								  pp+=","	;
-							  }		
-							  d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+pp+"&field2="+get[4]+"&party="+get[5]+"&sortt="+get[6]));
-                      }).on('mouseover',crosshover).on('mouseout',crossout);						
-                      function crosshover(d){
-                          d3.select(this).style('background-color','rgba(1,1,1,0.25)');
-                          d3.select(this).style('cursor','pointer');
-                      }
-                      function crossout(d){
-                          d3.select(this).style('background-color','rgba(1,1,1,0)')
-                      }
+                  else if(d=="North India")	{
+                  	for(var indx = 0; indx < north.length; ++indx)
+                  		addo2(north[indx]);
                   }
+                  else if(d=="South India")	{
+                  	for(var indx = 0; indx < south.length; ++indx)
+                  		addo2(south[indx]);                  	
+                  }
+                  else if(d=="West India")	{
+                  	for(var indx = 0; indx < west.length; ++indx)
+                  		addo2(west[indx]);                  	
+                  }
+                  else if(d=="East India")	{
+                  	for(var indx = 0; indx < east.length; ++indx)
+                  		addo2(east[indx]);                  	
+                  }
+                  else if(d=="North-East India")	{
+                  	for(var indx = 0; indx < ne.length; ++indx)
+                  		addo2(ne[indx]);                  	
+                  }
+                  else	{
+                  	addo2(d);
+                  }
+
+                  function addo2(d)	{
+	                  if(dstatea.indexOf(d)==-1 && d!='All'){ 
+	                      dstatea=dstatea.concat(d);
+	                      var sug = d3.select('#dstatefs').append('div').style('background-color','rgba(230,230,230,0.9)').style('font-size','smaller').style('padding','1px 8px').style('margin','2px 0px').attr('name',d).html(d).style('text-align','left');
+	                          sug.append('div').style('background-color','rgba(1,1,1,0)').style('float','right').style('padding','0px 5px').html('X').on('click',function(){
+								  sug.remove();delete dstatea[dstatea.indexOf(d)];
+								  var get=showurl();
+								  var pp='';
+								  for( f in dstatea){
+									  if(dstatea[f]!='All')pp+="\""+dstatea[f]+"\"";
+									  else this.selectedIndex=0;
+									  if (f!=dstatea.length-1)
+									  pp+=","	;
+								  }		
+								  d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+pp+"&field2="+get[4]+"&party="+get[5]+"&sortt="+get[6]));
+	                      }).on('mouseover',crosshover).on('mouseout',crossout);						
+	                      function crosshover(d){
+	                          d3.select(this).style('background-color','rgba(1,1,1,0.25)');
+	                          d3.select(this).style('cursor','pointer');
+	                      }
+	                      function crossout(d){
+	                          d3.select(this).style('background-color','rgba(1,1,1,0)')
+	                      }
+	                  }
+	              }
           }
 		  
    $(function() { $( "#radioset" ).buttonset();  });

@@ -107,7 +107,7 @@ var partyFilt = [<?php
   states = states.map(function(d) {
     return d.replace(/[\d]/g,'');
   })
-
+  
   //form parties into a new proper dictionary
   for(var party in partiesD)  {
     parties.push([]);
