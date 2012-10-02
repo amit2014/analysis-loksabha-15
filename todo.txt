@@ -11,6 +11,3 @@ TODO:
 	b. other parameters ke liye drop down
 	c. Disable/remove current panel
 6. Rename Home as Important plots
-7. In current home page,
-	b. Political Parties waale filter mein, is it possible ki we predefina a UPA and an NDA option? Political parties ke naam ke liye refer to the report that i have sent you under section "Political alliance" (5.4)
-
