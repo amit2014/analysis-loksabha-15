@@ -66,13 +66,15 @@ stroke: black;
 //        console.log(stateFilt);
 
     if('<?php
-        getvar('sort','x')
+        getvar('sortt','x')
         ?>' == 'y')
         sortby = false;
 
     d3.csv("MPTrack.csv", function(data) {
     
         data = data.filter(function(obj)    {
+          if(obj[yField].length <= 0)
+            return false;
           if (stateFilt.length != 0 && stateFilt.indexOf(obj["State"]) < 0)
             return false;
           if (partyFilt.length != 0 && partyFilt.indexOf(obj["Political party"]) < 0)
@@ -90,14 +92,14 @@ stroke: black;
             var num = {};
             for(var i = data.length - 1; i >= 0; --i)
                 if(!isNaN(parseFloat(data[i][xField])))
-                    if(data[i][yField].length > 0) {
-                        if(num[data[i][yField]] == undefined) {
-                            num[data[i][yField]] = 0;
-                            dict[data[i][yField]] = 0;
-                        }
-                        dict[data[i][yField]] += parseFloat(data[i][xField]);
-                        num[data[i][yField]]++;
+                {
+                    if(num[data[i][yField]] == undefined) {
+                        num[data[i][yField]] = 0;
+                        dict[data[i][yField]] = 0;
                     }
+                    dict[data[i][yField]] += parseFloat(data[i][xField]);
+                    num[data[i][yField]]++;
+                }
             for (var key in dict)
                 dict[key] = dict[key]/num[key];
         }

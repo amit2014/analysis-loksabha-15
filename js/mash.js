@@ -15,61 +15,106 @@
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-     // console.log(field);
-      d3.csv("MPTrack.csv", function(data) {
-        var matrix = [];	
+      console.log(field);
+      d3.csv("MPTrack.csv", function(mps) {
+        var matrix = [];
         var numb = [];
         var states = [];
         var parties = [];
 
-        //Setting States field up
-		var allstates=['All'];
-		for (var i=0;i<data.length;i++){
-			if (allstates.indexOf(data[i]['State'])==-1){
-				if (data[i]['State'])allstates=allstates.concat(data[i]['State']);
-			}
-		}
-		allstates=allstates.sort();
-		var statef = document.getElementById("statef");
-		statef.innerHTML= '';
-		for (state in allstates){
-			statef.innerHTML += "<option value=\'" + escape(allstates[state])+ "\'>" + allstates[state] + "</option>";
-		}
-		//***************
-	
-		//Setting Party field up
-		var allparties=['All'];
-		for (var i=0;i<data.length;i++){
-			if (allparties.indexOf(data[i]['Political party'])==-1){
-				if (data[i]['Political party'])allparties=allparties.concat(data[i]['Political party']);
-			}
-		}
-		allparties=allparties.sort();
-		var statef = document.getElementById("partyf");
-		statef.innerHTML= '';
-		for (state in allparties){
-			statef.innerHTML += "<option value=\'" + escape(allparties[state])+ "\'>" + allparties[state] + "</option>";
-		}
-		//***************
-		document.getElementById('statef').onchange = setstate;
-		document.getElementById('partyf').onchange = setparty;
-		function setstate(){
-			add_pc();
-		}
-		function setparty(){
-			add_bc();
-		}
-		//****************
-		
-        for (var i = 0, s = 0, p = 0; i < data.length; i++) {
-          if(states.indexOf(data[i]["State"]) < 0 && data[i]["State"].length > 0 && (stateFilt.length == 0 || stateFilt.indexOf(data[i]["State"]) >= 0) )
-            states[s++] = data[i]["State"];
-          if(parties.indexOf(data[i]["Political party"]) < 0 && data[i]["Political party"].length > 0 && (partyFilt.length == 0 || partyFilt.indexOf(data[i]["Political party"]) >= 0) )
-            parties[p++] = data[i]["Political party"];
+        
+        for (var i = 0, s = 0, p = 0; i < mps.length; i++) {
+          if(states.indexOf(mps[i]["State"]) < 0 && mps[i]["State"].length > 0 && (stateFilt.length == 0 || stateFilt.indexOf(mps[i]["State"]) >= 0) )
+            states[s++] = mps[i]["State"];
+          if(parties.indexOf(mps[i]["Political party"]) < 0 && mps[i]["Political party"].length > 0 && (partyFilt.length == 0 || partyFilt.indexOf(mps[i]["Political party"]) >= 0) )
+            parties[p++] = mps[i]["Political party"];
         };
 
-        states.sort();
-        parties.sort();
+        if(sortvar == 'party') {
+          states.sort();
+
+          var num = {};
+          var mat = {};
+          for (var i = mps.length - 1; i >= 0; i--)
+            if( states.indexOf(mps[i]["State"]) >= 0 && parties.indexOf(mps[i]["Political party"]) >= 0 && !isNaN(parseFloat(mps[i][field])) ) {
+              if(mat[mps[i]["Political party"]] == undefined) {
+                mat[mps[i]["Political party"]] = 0;
+                num[mps[i]["Political party"]] = 0;
+              }
+              mat[mps[i]["Political party"]] += parseFloat(mps[i][field]);
+              num[mps[i]["Political party"]]++;
+            }
+          for(var i = 0; i < parties.length; ++i)
+            if(num[parties[i]] > 0)
+              mat[parties[i]] /= parseFloat(num[parties[i]]);
+          parties.sort(function(a,b)  {
+            return mat[b] - mat[a];
+          })
+        }
+        else if(sortvar == 'state') {
+          parties.sort();
+
+          var num = {};
+          var mat = {};
+          for (var i = mps.length - 1; i >= 0; i--)
+            if( states.indexOf(mps[i]["State"]) >= 0 && parties.indexOf(mps[i]["Political party"]) >= 0 && !isNaN(parseFloat(mps[i][field])) ) {
+              if(mat[mps[i]["State"]] == undefined) {
+                mat[mps[i]["State"]] = 0;
+                num[mps[i]["State"]] = 0;
+              }
+              mat[mps[i]["State"]] += parseFloat(mps[i][field]);
+              num[mps[i]["State"]]++;
+            }
+          for(var i = 0; i < states.length; ++i)
+            if(num[states[i]] > 0)
+              mat[states[i]] /= parseFloat(num[states[i]]);
+          states.sort(function(a,b)  {
+            return mat[b] - mat[a];
+          })
+        }
+        else if(sortvar == 'sp')  {
+          var num = {};
+          var mat = {};
+          for (var i = mps.length - 1; i >= 0; i--)
+            if( states.indexOf(mps[i]["State"]) >= 0 && parties.indexOf(mps[i]["Political party"]) >= 0 && !isNaN(parseFloat(mps[i][field])) ) {
+              if(mat[mps[i]["Political party"]] == undefined) {
+                mat[mps[i]["Political party"]] = 0;
+                num[mps[i]["Political party"]] = 0;
+              }
+              mat[mps[i]["Political party"]] += parseFloat(mps[i][field]);
+              num[mps[i]["Political party"]]++;
+            }
+          for(var i = 0; i < parties.length; ++i)
+            if(num[parties[i]] > 0)
+              mat[parties[i]] /= parseFloat(num[parties[i]]);
+          parties.sort(function(a,b)  {
+            return mat[b] - mat[a];
+          });          
+
+          var num = {};
+          var mat = {};
+          for (var i = mps.length - 1; i >= 0; i--)
+            if( states.indexOf(mps[i]["State"]) >= 0 && parties.indexOf(mps[i]["Political party"]) >= 0 && !isNaN(parseFloat(mps[i][field])) ) {
+              if(mat[mps[i]["State"]] == undefined) {
+                mat[mps[i]["State"]] = 0;
+                num[mps[i]["State"]] = 0;
+              }
+              mat[mps[i]["State"]] += parseFloat(mps[i][field]);
+              num[mps[i]["State"]]++;
+            }
+          for(var i = 0; i < states.length; ++i)
+            if(num[states[i]] > 0)
+              mat[states[i]] /= parseFloat(num[states[i]]);
+          states.sort(function(a,b)  {
+            return mat[b] - mat[a];
+          });
+        }
+        else  {
+          states.sort();
+          parties.sort();
+        }
+
+
         for (var i = 0; i < states.length; i++) {
           matrix[i] = [];
           numb[i] = [];
@@ -79,10 +124,10 @@
           }
         }
 
-        for (var i = data.length - 1; i >= 0; i--)
-          if( states.indexOf(data[i]["State"]) >= 0 && parties.indexOf(data[i]["Political party"]) >= 0 && !isNaN(parseFloat(data[i][field])) ) {
-            matrix[states.indexOf(data[i]["State"])][parties.indexOf(data[i]["Political party"])].z += parseFloat(data[i][field]);
-            numb[states.indexOf(data[i]["State"])][parties.indexOf(data[i]["Political party"])]++;
+        for (var i = mps.length - 1; i >= 0; i--)
+          if( states.indexOf(mps[i]["State"]) >= 0 && parties.indexOf(mps[i]["Political party"]) >= 0 && !isNaN(parseFloat(mps[i][field])) ) {
+            matrix[states.indexOf(mps[i]["State"])][parties.indexOf(mps[i]["Political party"])].z += parseFloat(mps[i][field]);
+            numb[states.indexOf(mps[i]["State"])][parties.indexOf(mps[i]["Political party"])]++;
           }
 
         for(var i = 0; i < matrix.length; ++i)
@@ -194,4 +239,3 @@
         }
 
       });
-

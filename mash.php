@@ -44,7 +44,8 @@
       </style>
       <script src="js/d3.v2.min.js?2.8.1"></script>
 
-      <script >      <?php
+      <script >
+      <?php
         function getvar($vname, $deflt)  { 
           if(isset($_GET[$vname])){
             echo urldecode($_GET[$vname]) ;
@@ -62,8 +63,12 @@
                       ?>],
           partyFilt = [<?php
                         getvar('party','');
-                      ?>];</script>
-       <script src="js/mash.js"></script>
+                      ?>],
+          sortvar = '<?php
+                        getvar('sortt','');
+                      ?>';
+      </script>
+      <script src="js/mash.js"></script>
     </div>
   </div><!-- end of #wrapper --> 
 </div><!-- end of #container -->
