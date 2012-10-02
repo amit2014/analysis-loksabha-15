@@ -26,8 +26,8 @@
         <label for="graphs_4">Bar</label>
       </div>
       <div style="overflow:auto" class="panelf">
-          <div style="float:left;clear:left;margin-bottom:0px"><label for="xfield" >X-axis</label><select name="xfield" id="xfield" style="width:120px"></select></div>
-          <div style="float:right;clear:right;margin-bottom:0px"><label for="yfield" >Y-axis</label><select name="yfield" id="yfield" style="width:120px"></select></div>
+          <div style="float:left;clear:left;margin-bottom:0px"><label id="xf" for="xfield" >X-axis</label><select name="xfield" id="xfield" style="width:120px"></select></div>
+          <div style="float:right;clear:right;margin-bottom:0px"><label id="yf" for="yfield" >Y-axis</label><select name="yfield" id="yfield" style="width:120px"></select></div>
       </div>
       	  <div id="dstatef" style="float:left;clear:left;" class="panelf"><label for="statef" >State</label><select name="statef" id="statef" style="width:270px"></select> <div id="dstatefs" style="max-height:50px"></div></div><br />
       	  <div id="dpartyf" style="float:left;clear:left;text-align:center" class="panelf" ><label for="partyf" style="text-align:left">Political Party</label><select name="partyf" id="partyf" style="width:270px"></select>
