@@ -142,6 +142,7 @@ function initall() {
 		document.getElementById('frame').onload = getdhw;
 		document.getElementById("graphs_0").onchange = function(e) {
 			$('#featured').css('overflow','hidden');
+			$("#xf")[0].innerHTML='X-axis';
 			document.getElementById("yfield").innerHTML= "<option value=\'"+escape("")+"\'>Frequency</options>";
 			d3.select('#statef').attr('disabled',null);
 			d3.select('#xfield').attr('disabled',null);
@@ -149,7 +150,7 @@ function initall() {
 			d3.select('#partyf').attr('disabled',null);
 			var sel_field = document.getElementById("xfield");
 			var blocked_fields = ["MP name", "Nature of membership", "Start of term", "End of term", "State", "Constituency", "Political party", "Gender", 
-			"Educational qualifications", "Educational qualifications - details", "Private Member Bills", "Notes", "National Debates average", 
+			"Educational qualifications", "Educational qualifications - details",  "Notes", "National Debates average", 
 			"National Private Member Bills average", "National Questions average", "National Attendance average", "State's Debates average", 
 			"State's Private Member Bills  average", "State's Questions average", "State's Attendance average"];
 			sel_field.innerHTML = "";
@@ -176,22 +177,25 @@ function initall() {
 			for (field in data[0]) {
 				if (blocked_fields.indexOf(field) < 0) sel_field.innerHTML += "	<option value=\'" + escape(field) + "\'>" + field + "</option>";
 			}
-
+			
+			$("#xf")[0].innerHTML='Field';
+			
 			document.getElementById("xfield").selectedIndex = 1;
 			var get=showurl();
-			d3.select("iframe").attr("src", encodeURI("pie.php"+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+'&party='+get[5]));		
+			d3.select("iframe").attr("src", encodeURI("pie.php"+"?field=Political party&state="+get[3]+"&field2="+get[4]+'&party='+get[5]));		
 			//getdhw();
 		}
 
 		document.getElementById("graphs_2").onchange = function(e) {
 			$('#featured').css('overflow','hidden');
+			$("#xf")[0].innerHTML='X-axis';
  			d3.select('#statef').attr('disabled',null);
 			d3.select('#xfield').attr('disabled',null);
 			d3.select('#yfield').attr('disabled',null);
 			d3.select('#partyf').attr('disabled',null);
 			var x_field = document.getElementById("xfield");
 			var y_field = document.getElementById("yfield");
-			var avx_fields = ["Age","Attendance","Debates","Questions"];
+			var avx_fields = ["Age","Attendance","Debates","Questions","Private Member Bills"];
 			x_field.innerHTML = "";
 			y_field.innerHTML = "";
 			for (field in avx_fields) {
@@ -208,6 +212,7 @@ function initall() {
 
 		document.getElementById("graphs_3").onchange = function(e) {
 			$('#featured').css('overflow','hidden');
+			$("#xf")[0].innerHTML='X-axis';
 			document.getElementById("xfield").innerHTML= "<option value=\'"+escape("State")+"\'>State</options>";
 			document.getElementById("yfield").innerHTML= "<option value=\'"+escape("Political party")+"\'>Political Party</options>";
 			document.getElementById('statef').selectedIndex = 0;
@@ -219,13 +224,14 @@ function initall() {
 			add_pc();
 			
 			var get=showurl();
-			d3.select("iframe").attr("src", encodeURI("area.php"+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+'&party='+get[5]));		
+			d3.select("iframe").attr("src", encodeURI("area.php"+"?field="+get[2]+"&state="+"&field2="+get[4]+'&party='+get[5]));		
 			//getdhw();
 		}
 
 		document.getElementById("graphs_4").onchange = function(e) {
 			$('#frame').css('height','150%');
 			$('#frame').css('width','142%');
+			$("#xf")[0].innerHTML='X-axis';
  			d3.select('#statef').attr('disabled',null);
 			d3.select('#xfield').attr('disabled',null);
 			d3.select('#yfield').attr('disabled',null);
@@ -246,7 +252,6 @@ function initall() {
 			document.getElementById("yfield").selectedIndex = 1;
 			var get=showurl();
 			d3.select("iframe").attr("src", encodeURI("bars.php"+"?field="+"&state="+get[3]+"&field2=State"+'&party='+get[5]));		
-			//getdhw();
 		}
 	});
 }

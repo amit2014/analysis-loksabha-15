@@ -27,11 +27,11 @@
   var dstatea=[];
   function showurl(){
       var curl = decodeURIComponent(d3.select("iframe").attr("src"));
-      var file =	curl.substring(0,curl.indexOf('.php'))+'.php';
+      var file =  curl.substring(0,curl.indexOf('.php'))+'.php';
       var field=  curl.substring(curl.indexOf('?')+7,curl.indexOf('&'));
       var state=  curl.substring(curl.indexOf("state")+6);state=state.substring(0,state.indexOf('&'));
       var field2= curl.substring(curl.indexOf("field2")+7);field2=field2.substring(0,field2.indexOf('&'));
-      var party = curl.substring(curl.indexOf('party=')+6);
+      var party = curl.substring(curl.indexOf('party=')+6);party=party.substring(0,party.indexOf('&')==-1?party.length:party.indexOf('&'))
       console.log([curl,file,field,state,field2,party]);
       return [curl,file,field,state,field2,party];
   }

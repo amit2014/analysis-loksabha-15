@@ -3,7 +3,6 @@
     <div id="content" class="grid col-620">
       <div id="post-2" class="post-2 page type-page status-publish hentry">
         <h1 class="post-title">State wise distribution</h1>
-        <!--div class="post-meta"> <span class="meta-prep meta-prep-author">Posted on</span> <a href="http://localhost/wordpress/?page_id=2" title="10:38 am" rel="bookmark">September 12, 2012</a> by <span class="author vcard"><a class="url fn n" href="http://localhost/wordpress/?author=1" title="View all posts by admin">admin</a></span> <span class="comments-link"> <span class="mdash">&mdash;</span> <a href="http://localhost/wordpress/?page_id=2#respond" title="Comment on Sample Page">No Comments &darr;</a> </span> </div-->
         <div class="post-entry">
           <style type="text/css">
     #india {
@@ -46,7 +45,7 @@
 	function clc(){
 		clicked=true;
 
-		$("#s_info span").html("<li class='cat-item cat-item-1'>State Name: <a style='cursor:default'>"+d3.select(this).attr("state")+"</a></li>");
+		
 		var parties=getallpartiesfrom(d3.select(this).attr("state"));
 		var party=[];
 		var partyv=[];
@@ -61,9 +60,13 @@
 			}
 		}
 		$("#s_party ul").html("");
+		var s=0;
 		for(i=0;i<party.length;i++){
 			$("#s_party ul").append('<li class="cat-item" style="cursor:default" ><a>'+party[i]+': '+partyv[i]+'</a></li>');
+			s+=partyv[i];
 		}
+		
+		$("#s_info span").html("<li class='cat-item cat-item-1'>State Name: <a style='cursor:default'>"+d3.select(this).attr("state")+" : "+s+"</a></li>");
 		if(this.style["fill"]!="#55aa99"){
 		if(that){
 			that.style["fill"]="green";
@@ -82,7 +85,7 @@
 		this.style["fill"]="#393";
 		this.style["cursor"]="pointer";
 		if(!clicked){
-		$("#s_info span").html("<li class='cat-item cat-item-1'>State Name: <a style='cursor:default'>" + d3.select(this).attr("state")+"</a></li>");
+
 		var parties=getallpartiesfrom(d3.select(this).attr("state"));
 		var party=[];
 		var partyv=[];
@@ -96,11 +99,14 @@
 				partyv.push(1);
 			}
 		}
-
+		
+		var s=0;
 		$("#s_party ul").html("");
 		for(i=0;i<party.length;i++){
 			$("#s_party ul").append('<li class="cat-item" style="cursor:pointer" ><a>'+party[i]+': '+partyv[i]+'</a></li>');
+			s+=partyv[i];
 		}
+		$("#s_info span").html("<li class='cat-item cat-item-1'>State Name: <a style='cursor:default'>" + d3.select(this).attr("state")+" : "+s+"</a></li>");
 		}
 	}
 	
@@ -133,8 +139,7 @@
 	function setall(){
 		part=[];
 		partw=[];		
-		$("#s_info span").html("<li class='cat-item cat-item-1'><a style='cursor:default'>All India </a></li>");
-		
+	
 		  for(i in data){	
 		  if (part.indexOf(data[i]['Political party'])==-1 && data[i]['Political party']!=''){
 			  part=part.concat(data[i]['Political party']);
@@ -149,9 +154,12 @@
 		var partyy=part.map(function(d)	{ return [d,partw[part.indexOf(d)]]; });
 		partyy.sort(function(a,b){return a[1]==b[1]?0:(a[1]>b[1]?-1:1)});
 		console.log(partyy);
+		var s=0;
 		for (i in part){
-			$("#s_party ul").append("<li class='cat-item cat-item-1'><a style='cursor:default'>" + partyy[i][0]+" : "+partyy[i][1]+"  </a></li>");	
+			$("#s_party ul").append("<li class='cat-item cat-item-1'><a style='cursor:default'>" + partyy[i][0]+" : "+partyy[i][1]+"  </a></li>");
+			s+=partyy[i][1];	
 		}
+		$("#s_info span").html("<li class='cat-item cat-item-1'><a style='cursor:default'>All India : "+s+"</a></li>");
 	}
 	setall();
 	});
@@ -160,12 +168,6 @@
       </div>
     </div>    
     <div id="widgets" class="grid col-300 fit">
-      <!--div id="search-2" class="widget-wrapper widget_search">
-        <form method="get" id="searchform" action="http://localhost/wordpress/">
-          <input type="text" class="field" name="s" id="s" placeholder="search here &hellip;" />
-          <input type="submit" class="submit" name="submit" id="searchsubmit" value="Go"  />
-        </form>
-      </div-->
       <div id="s_info" class="widget-wrapper widget_recent_entries">
         <div class="widget-title">State Info</div>
         <ul>
@@ -178,7 +180,5 @@
         </ul>
       </div>
     </div>
-  </div>
-  <!-- end of .call-to-action --> 
-</div>
-<!-- end of .col-460 --> 
+  </div><!-- end of .call-to-action --> 
+</div><!-- end of .col-460 --> 
