@@ -66,7 +66,7 @@ stroke: black;
 //        console.log(stateFilt);
 
     if('<?php
-        getvar('sort','x')
+        getvar('sortt','x')
         ?>' == 'y')
         sortby = false;
 
