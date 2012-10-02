@@ -64,7 +64,7 @@ function getvar($vname, $deflt)  {
 				var l = d3.select('#legend');
 				var e = l.append('div').style('width','340px').style('height','20px').style('border','thin black solid').style('margin-top','1px')
 					.style('border-collapse','collapse').style('float','right').style('text-align','left').style('font-size','smaller')
-					.style('font-family','arial');
+					.style('font-family','arial').style('margin-top','2px');
 				var d = e.append('div').style('width','40px').style('height','20px').style('border','thin').style('float','left').style('background-color',color(i))
 					.style('margin-right','10px');
 				

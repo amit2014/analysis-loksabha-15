@@ -41,31 +41,31 @@ circle {
 }
 
 .UnderMatric {
-  fill: #000000;
+  fill: #aa0000;
 }
 
 .Matric {
-  fill: #6c0000;
+  fill: #dd6f00;
 }
 
 .InterHigherSecondary, .CertificateCourse {
-  fill: #e30000;
+  fill: #eeee00;
 }
 
 .UnderGraduate, .DiplomaCourse {
-  fill: #f31600;
+  fill: #6fdd00;
 }
 
 .ProfessionalGraduate, .Graduate, .PostDiplomaCourse {
-  fill: #00b228;
+  fill: #00dddd;
 }
 
 .PostGraduate {
-  fill: #00488c;
+  fill: #0000cc;
 }
 
 .Doctorate {
-  fill: #0000cc;
+  fill: #ee00ee;
 }
 
 .Informationnotavailable, .Others {

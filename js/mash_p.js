@@ -132,14 +132,19 @@
             if(numb[i][j] > 0)
               matrix[i][j].z /= parseFloat(numb[i][j]);
 
-        var max = 0;
+        var max = 0, min = 999999;
         for(var i = 0; i < matrix.length; ++i)
-          for(var j = 0; j < matrix[0].length; ++j)
+          for(var j = 0; j < matrix[0].length; ++j) {
             max = Math.max(matrix[i][j].z,max);
+            if(matrix[i][j].z != 0)
+              min = Math.min(matrix[i][j].z,min);
+          }
         for(var i = 0; i < matrix.length; ++i)
-          for(var j = 0; j < matrix[0].length; ++j)
-            matrix[i][j].z /= max;
-
+          for(var j = 0; j < matrix[0].length; ++j) {
+            if(matrix[i][j].z != 0)
+              matrix[i][j].z = 0.85*(matrix[i][j].z - min)/(max-min) + 0.015;
+          }
+console.log(matrix,min,max);
         var mtrans = [];
         for (var i = 0; i < matrix.length; i++)
           for (var j = 0; j < matrix[0].length; j++)  {

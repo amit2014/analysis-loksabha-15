@@ -3,14 +3,15 @@ window.onload = initall;
 
 function initall() {
 	d3.csv("MPTrack.csv", function(data) {
+		
 		//Setting States field up
-		var allstates=['All'];
+		var allstates=[];
 		for (var i=0;i<data.length;i++){
 			if (allstates.indexOf(data[i]['State'])==-1){
 				if (data[i]['State'])allstates=allstates.concat(data[i]['State']);
 			}
 		}
-		allstates=allstates.sort();
+		allstates=['All','North India','South India','East India','West India','North-East India'].concat(allstates.sort());
 		var statef = document.getElementById("statef");
 		statef.innerHTML= '';
 		for (state in allstates){
@@ -19,13 +20,13 @@ function initall() {
 		//***************
 	
 		//Setting Party field up
-		var allparties=['All','UPA','NDA'];
+		var allparties=[];
 		for (var i=0;i<data.length;i++){
 			if (allparties.indexOf(data[i]['Political party'])==-1){
 				if (data[i]['Political party'])allparties=allparties.concat(data[i]['Political party']);
 			}
 		}
-		allparties=allparties.sort();
+		allparties=['All','UPA','NDA'].concat(allparties.sort());
 		var statef = document.getElementById("partyf");
 		statef.innerHTML= '';
 		for (state in allparties){

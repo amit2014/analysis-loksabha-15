@@ -6,31 +6,31 @@
 	border-left-style: none;
 }
 .UnderMatric {
-  fill: #000000;
+  fill: #aa0000;
 }
 
 .Matric {
-  fill: #6c0000;
+  fill: #dd6f00;
 }
 
 .InterHigherSecondary, .CertificateCourse {
-  fill: #e30000;
+  fill: #eeee00;
 }
 
 .UnderGraduate, .DiplomaCourse {
-  fill: #f31600;
+  fill: #6fdd00;
 }
 
 .ProfessionalGraduate, .Graduate, .PostDiplomaCourse {
-  fill: #00b228;
+  fill: #00dddd;
 }
 
 .PostGraduate {
-  fill: #00488c;
+  fill: #0000cc;
 }
 
 .Doctorate {
-  fill: #0000cc;
+  fill: #ee00ee;
 }
 
 .Informationnotavailable, .Others {
@@ -52,17 +52,17 @@
          </div>
          <div id="leg" style="float:left;clear:left;clear:both;zoom:0.82;width:90%" class="panelf" >
          <label style="zoom:1.2;margin-bottom:5px">Legend</label>
-			<svg height="20px" width="250px"><circle cx="20" cy="10" r="4" stroke="black" stroke-width="0" class="UnderMatric"/><text x="40" y="15" fill="black">UnderMatric</text></svg>
+			<svg height="20px" width="250px"><circle cx="20" cy="10" r="4" stroke="black" stroke-width="0" class="UnderMatric"/><text x="40" y="15" fill="black">Under Matric</text></svg>
 			<svg height="20px" width="250px"><circle cx="20" cy="10" r="4" stroke="black" stroke-width="0" class="Matric"/><text x="40" y="15" fill="black">Matric</text></svg>
-			<svg height="20px" width="250px"><circle cx="20" cy="10" r="4" stroke="black" stroke-width="0" class="InterHigherSecondary"/><text x="40" y="15" fill="black">InterHigherSecondary</text></svg>
-			<svg height="20px" width="250px"><circle cx="20" cy="10" r="4" stroke="black" stroke-width="0" class="UnderGraduate"/><text x="40" y="15" fill="black">UnderGraduate</text></svg>
-			<svg height="20px" width="250px"><circle cx="20" cy="10" r="4" stroke="black" stroke-width="0" class="DiplomaCourse"/><text x="40" y="15" fill="black">DiplomaCourse</text></svg>
-			<svg height="20px" width="250px"><circle cx="20" cy="10" r="4" stroke="black" stroke-width="0" class="ProfessionalGraduate"/><text x="40" y="15" fill="black">ProfessionalGraduate</text></svg>
+			<svg height="20px" width="250px"><circle cx="20" cy="10" r="4" stroke="black" stroke-width="0" class="InterHigherSecondary"/><text x="40" y="15" fill="black">Inter / Higher Secondary</text></svg>
+			<svg height="20px" width="250px"><circle cx="20" cy="10" r="4" stroke="black" stroke-width="0" class="UnderGraduate"/><text x="40" y="15" fill="black">Under Graduate</text></svg>
+			<svg height="20px" width="250px"><circle cx="20" cy="10" r="4" stroke="black" stroke-width="0" class="DiplomaCourse"/><text x="40" y="15" fill="black">Diploma Course</text></svg>
+			<svg height="20px" width="250px"><circle cx="20" cy="10" r="4" stroke="black" stroke-width="0" class="ProfessionalGraduate"/><text x="40" y="15" fill="black">Professional Graduate</text></svg>
 			<svg height="20px" width="250px"><circle cx="20" cy="10" r="4" stroke="black" stroke-width="0" class="Graduate"/><text x="40" y="15" fill="black">Graduate</text></svg>
-			<svg height="20px" width="250px"><circle cx="20" cy="10" r="4" stroke="black" stroke-width="0" class="PostDiplomaCourse"/><text x="40" y="15" fill="black">PostDiplomaCourse</text></svg>
-			<svg height="20px" width="250px"><circle cx="20" cy="10" r="4" stroke="black" stroke-width="0" class="PostGraduate"/><text x="40" y="15" fill="black">PostGraduate</text></svg>
+			<svg height="20px" width="250px"><circle cx="20" cy="10" r="4" stroke="black" stroke-width="0" class="PostDiplomaCourse"/><text x="40" y="15" fill="black">Post-Diploma Course</text></svg>
+			<svg height="20px" width="250px"><circle cx="20" cy="10" r="4" stroke="black" stroke-width="0" class="PostGraduate"/><text x="40" y="15" fill="black">Post-Graduate</text></svg>
 			<svg height="20px" width="250px"><circle cx="20" cy="10" r="4" stroke="black" stroke-width="0" class="Doctorate"/><text x="40" y="15" fill="black">Doctorate</text></svg>
-			<svg height="20px" width="250px"><circle cx="20" cy="10" r="4" stroke="black" stroke-width="1" class="Informationnotavailable"/><text x="40" y="15" fill="black">Informationnotavailable</text></svg>
+			<svg height="20px" width="250px"><circle cx="20" cy="10" r="4" stroke="black" stroke-width="1" class="Informationnotavailable"/><text x="40" y="15" fill="black">Information not available</text></svg>
 			<svg height="20px" width="250px"><circle cx="20" cy="10" r="4" stroke="black" stroke-width="1" class="Others"/><text x="40" y="15" fill="black">Others</text></svg>
          </div>
 
