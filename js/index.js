@@ -215,6 +215,8 @@ function initall() {
 			d3.select('#xfield').attr('disabled','disabled');
 			d3.select('#yfield').attr('disabled','disabled');
 			d3.select('#partyf').attr('disabled',null);
+			dstatea=[];
+			add_pc();
 			
 			var get=showurl();
 			d3.select("iframe").attr("src", encodeURI("area.php"+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+'&party='+get[5]));		

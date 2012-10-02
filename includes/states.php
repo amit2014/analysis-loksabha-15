@@ -3,7 +3,7 @@
     <div id="content" class="grid col-620">
       <div id="post-2" class="post-2 page type-page status-publish hentry">
         <h1 class="post-title">State wise distribution</h1>
-        <div class="post-meta"> <span class="meta-prep meta-prep-author">Posted on</span> <a href="http://localhost/wordpress/?page_id=2" title="10:38 am" rel="bookmark">September 12, 2012</a> by <span class="author vcard"><a class="url fn n" href="http://localhost/wordpress/?author=1" title="View all posts by admin">admin</a></span> <span class="comments-link"> <span class="mdash">&mdash;</span> <a href="http://localhost/wordpress/?page_id=2#respond" title="Comment on Sample Page">No Comments &darr;</a> </span> </div>
+        <!--div class="post-meta"> <span class="meta-prep meta-prep-author">Posted on</span> <a href="http://localhost/wordpress/?page_id=2" title="10:38 am" rel="bookmark">September 12, 2012</a> by <span class="author vcard"><a class="url fn n" href="http://localhost/wordpress/?author=1" title="View all posts by admin">admin</a></span> <span class="comments-link"> <span class="mdash">&mdash;</span> <a href="http://localhost/wordpress/?page_id=2#respond" title="Comment on Sample Page">No Comments &darr;</a> </span> </div-->
         <div class="post-entry">
           <style type="text/css">
     #india {
@@ -46,7 +46,7 @@
 	function clc(){
 		clicked=true;
 
-		$("#s_info span").html("State Name: <a style='cursor:default'>"+d3.select(this).attr("state")+"</a>");
+		$("#s_info span").html("<li class='cat-item cat-item-1'>State Name: <a style='cursor:default'>"+d3.select(this).attr("state")+"</a></li>");
 		var parties=getallpartiesfrom(d3.select(this).attr("state"));
 		var party=[];
 		var partyv=[];
@@ -82,7 +82,7 @@
 		this.style["fill"]="#393";
 		this.style["cursor"]="pointer";
 		if(!clicked){
-		$("#s_info span").html("State Name: <a style='cursor:default'>" + d3.select(this).attr("state")+"</a>");
+		$("#s_info span").html("<li class='cat-item cat-item-1'>State Name: <a style='cursor:default'>" + d3.select(this).attr("state")+"</a></li>");
 		var parties=getallpartiesfrom(d3.select(this).attr("state"));
 		var party=[];
 		var partyv=[];
@@ -107,6 +107,8 @@
 
 	
 	function clr(){
+		if (!clicked)
+		setall();
 		if(this.style["fill"]!="#55aa99"){
 		this.style["fill"]="green";
 		}
@@ -128,42 +130,46 @@
       proj.translate([-1240, 720]);
     }
 
+	function setall(){
+		part=[];
+		partw=[];		
+		$("#s_info span").html("<li class='cat-item cat-item-1'><a style='cursor:default'>All India </a></li>");
+		
+		  for(i in data){	
+		  if (part.indexOf(data[i]['Political party'])==-1 && data[i]['Political party']!=''){
+			  part=part.concat(data[i]['Political party']);
+			  partw[part.indexOf(data[i]['Political party'])]=1;
+		  }
+		  else{
+				partw[part.indexOf(data[i]['Political party'])]++;
+		  }
+
+		}
+		$("#s_party ul").html("");
+		var partyy=part.map(function(d)	{ return [d,partw[part.indexOf(d)]]; });
+		partyy.sort(function(a,b){return a[1]==b[1]?0:(a[1]>b[1]?-1:1)});
+		console.log(partyy);
+		for (i in part){
+			$("#s_party ul").append("<li class='cat-item cat-item-1'><a style='cursor:default'>" + partyy[i][0]+" : "+partyy[i][1]+"  </a></li>");	
+		}
+	}
+	setall();
 	});
   </script> 
         </div>
-        <!--<div class="post-entry">
-          <p>This is an example page. It&#8217;s different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this:</p>
-          <blockquote>
-            <p>Hi there! I&#8217;m a bike messenger by day, aspiring actor by night, and this is my blog. I live in Los Angeles, have a great dog named Jack, and I like pi&#241;a coladas. (And gettin&#8217; caught in the rain.)</p>
-          </blockquote>
-          <p>&#8230;or something like this:</p>
-          <blockquote>
-            <p>The XYZ Doohickey Company was founded in 1971, and has been providing quality doohickies to the public ever since. Located in Gotham City, XYZ employs over 2,000 people and does all kinds of awesome things for the Gotham community.</p>
-          </blockquote>
-          <p>As a new WordPress user, you should go to <a href="http://localhost/wordpress/wp-admin/">your dashboard</a> to delete this page and create new pages for your content. Have fun!</p>--> 
-        <!-- end of .post-entry -->
-        
-        <div class="post-data"> </div>
-        <!-- end of .post-data -->
-        
-        <div class="post-edit"></div>
       </div>
-      <!-- end of #post-2 --> 
-      
-    </div>
-    <!-- end of #content -->
-    
+    </div>    
     <div id="widgets" class="grid col-300 fit">
-      <div id="search-2" class="widget-wrapper widget_search">
+      <!--div id="search-2" class="widget-wrapper widget_search">
         <form method="get" id="searchform" action="http://localhost/wordpress/">
           <input type="text" class="field" name="s" id="s" placeholder="search here &hellip;" />
           <input type="submit" class="submit" name="submit" id="searchsubmit" value="Go"  />
         </form>
-      </div>
+      </div-->
       <div id="s_info" class="widget-wrapper widget_recent_entries">
         <div class="widget-title">State Info</div>
         <ul>
-          <li class="cat-item cat-item-1"><span></span></li>
+          <span></span>
         </ul>
       </div>
       <div id="s_party" class="widget-wrapper widget_categories">
@@ -172,14 +178,6 @@
         </ul>
       </div>
     </div>
-
-    <!-- end of #widgets --> 
-    <!--		<div> 
-          <h1 class="featured-title">Hello, World!</h1>
-          <h2 class="featured-subtitle">Your H2 subheadline here</h2>
-          <p>Your title, subtitle and this very content is editable from Theme Option. Call to Action button and its destination link as well. Image on your right can be an image or even YouTube video if you like.</p>
-          <div class="call-to-action"> <a href="http://localhost/wordpress/#nogo" class="blue button">Call to Action</a> </div>
-        </div>--> 
   </div>
   <!-- end of .call-to-action --> 
 </div>

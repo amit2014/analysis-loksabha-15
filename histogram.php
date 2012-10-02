@@ -24,7 +24,7 @@
 }
 
 </style>
-<body style="padding:3px;margin:3px;font-family:'Palatino Linotype', 'Book Antiqua', Palatino, serif">
+<body style="padding:3px;margin:3px;font-family:'Palatino Linotype', 'Book Antiqua', Palatino, serif;padding-top:50px">
 <script src="js/d3.v2.js"></script>
 <script src="js/histogram-chart.js"></script>
 <script>
