@@ -7,7 +7,7 @@
       <li class="page_item page-item-2"><a href="map.php">State wise Distribution</a></li>
       <li class="page_item page-item-2"><a href="mash.php">State-Party Mash Up</a></li>
       <li class="page_item page-item-2"><a href="splom.php">Scatter Plot Matrix</a></li>
-      <li class="page_item page-item-2"><a href="dataset.php">Dataset</a></li>
+      <li class="page_item page-item-2"><a href="https://docs.google.com/spreadsheet/ccc?key=0Au0UonzZBNwddHNWblQ5cDNVbkhFQ3hSUVpZdWVkSWc">Dataset</a></li>
     </ul>
     <select class="tinynav tinynav1">
       <option value="#" selected="selected">Home</option>

@@ -2,6 +2,10 @@ svg {
   font: 10px sans-serif;
 }
 
+.cell text {
+  font-weight: bold;
+}
+
 .axis {
   shape-rendering: crispEdges;
 }

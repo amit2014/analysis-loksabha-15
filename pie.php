@@ -61,11 +61,14 @@ function getvar($vname, $deflt)  {
 
 		var paths = arcs.append("path").attr("style","stroke:#000; stroke-width:0.2")
 			.attr("fill", function(d, i) {
-				var l=d3.select('#legend');
-				var e=l.append('div').style('width','340px').style('height','20px').style('border','thin black solid').style('margin-top','1px').style('border-collapse','collapse').style('float','right').style('text-align','left').style('font-size','smaller');
-				var d=e.append('div').style('width','40px').style('height','20px').style('border','thin').style('float','left').style('background-color',color(i));
+				var l = d3.select('#legend');
+				var e = l.append('div').style('width','340px').style('height','20px').style('border','thin black solid').style('margin-top','1px')
+					.style('border-collapse','collapse').style('float','right').style('text-align','left').style('font-size','smaller')
+					.style('font-family','arial');
+				var d = e.append('div').style('width','40px').style('height','20px').style('border','thin').style('float','left').style('background-color',color(i))
+					.style('margin-right','10px');
+				
 				e.html(e.html()+fieldd[i]+': '+(data[i]*100/sum()).toFixed(2)+'%'+' ('+data[i]+')');
-
 				return color(i);
 			}).on("mouseover", function(d, i) {
 				vis.selectAll("path").filter(function(d, j) {

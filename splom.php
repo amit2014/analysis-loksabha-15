@@ -33,8 +33,9 @@ console.log(stateFilt);
             debs = "Debates",
             qs = "Questions",
             att = "Attendance",
+            bills = "Private Member Bills",
             quali = "Educational qualifications";
-        var traits = [age, debs, qs, att];
+        var traits = [age, debs, qs, att, bills];
 
         function qual2class(q)  {
           return q.replace(/[^a-z]+/gi, '');
@@ -54,7 +55,7 @@ console.log(stateFilt);
         // Size parameters.
         var size = 150,
             padding = 19.5,
-            n = 4;
+            n = 5;
 
         // Position scales.
         var x = {}, y = {};
@@ -89,7 +90,7 @@ console.log(stateFilt);
             .attr("width", size * n + padding + 50)
             .attr("height", size * n + padding + 20)
             .append("g")
-            .attr("transform", "translate(50, 20)");
+            .attr("transform", "translate(20, 20)");
 
 
         // X-axis.
@@ -121,6 +122,7 @@ console.log(stateFilt);
             .attr("x", padding)
             .attr("y", padding)
             .attr("dy", ".71em")
+            .attr("font-size",11)
             .text(function(d) { return d.x; });
 
         function plot(p) {
