@@ -29,11 +29,14 @@
       var curl = decodeURIComponent(d3.select("iframe").attr("src"));
       var file =  curl.substring(0,curl.indexOf('.php'))+'.php';
       var field=  curl.substring(curl.indexOf('?')+7,curl.indexOf('&'));
-      var state=  curl.substring(curl.indexOf("state")+6);state=state.substring(0,state.indexOf('&'));
-      var field2= curl.substring(curl.indexOf("field2")+7);field2=field2.substring(0,field2.indexOf('&'));
+      var state=  curl.substring(curl.indexOf("state")+6);state=state.substring(0,state.indexOf('&')==-1?state.length:state.indexOf('&'));
+      var field2= curl.substring(curl.indexOf("field2")+7);field2=field2.substring(0,field2.indexOf('&')==-1?field2.length:field2.indexOf('&'));
       var party = curl.substring(curl.indexOf('party=')+6);party=party.substring(0,party.indexOf('&')==-1?party.length:party.indexOf('&'))
-      console.log([curl,file,field,state,field2,party]);
-      return [curl,file,field,state,field2,party];
+      var sortt = '';
+	  if(curl.indexOf('sortt=')!=-1)
+	  sortt=curl.substring(curl.indexOf('sortt=')+6);sortt=sortt.substring(0,sortt.indexOf('&')==-1?sortt.length:sortt.indexOf('&'))
+      console.log([curl,file,field,state,field2,party,sortt]);
+      return [curl,file,field,state,field2,party,sortt];
   }
   function add_bc(){
                   var d=decodeURIComponent($('#partyf')[0].options[$('#partyf')[0].selectedIndex].value)
@@ -53,7 +56,7 @@
 								  if (f!=dpartya.length-1)
 								  pp+=","	;
 							  }		
-							  d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+"&party="+pp));
+							  d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+"&party="+pp+"&sortt="+get[6]));
                       }).on('mouseover',crosshover).on('mouseout',crossout);						
                       function crosshover(d){
                           d3.select(this).style('background-color','rgba(1,1,1,0.25)');
@@ -82,7 +85,7 @@
 								  if (f!=dstatea.length-1)
 								  pp+=","	;
 							  }		
-							  d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+pp+"&field2="+get[4]+"&party="+get[5]));
+							  d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+pp+"&field2="+get[4]+"&party="+get[5]+"&sortt="+get[6]));
                       }).on('mouseover',crosshover).on('mouseout',crossout);						
                       function crosshover(d){
                           d3.select(this).style('background-color','rgba(1,1,1,0.25)');

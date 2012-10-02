@@ -95,7 +95,7 @@ function initall() {
 				if (f!=dpartya.length-1)
 				pp+=","	;
 			}		
-			d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+"&party="+pp));
+			d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+"&party="+pp+"&sortt="+get[6]));
 			//if(this.options[this.selectedIndex].value!='All') 
 			//else d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+'&party='));
 		}
@@ -251,7 +251,7 @@ function initall() {
 			document.getElementById("xfield").selectedIndex = 0;
 			document.getElementById("yfield").selectedIndex = 1;
 			var get=showurl();
-			d3.select("iframe").attr("src", encodeURI("bars.php"+"?field="+"&state="+get[3]+"&field2=State"+'&party='+get[5]));		
+			d3.select("iframe").attr("src", encodeURI("bars.php"+"?field="+"&state="+get[3]+"&field2=State"+'&party='+get[5]+"&sortt="+get[6]));		
 		}
 	});
 }
