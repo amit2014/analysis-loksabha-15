@@ -78,7 +78,10 @@
                       ?>],
           partyFilt = [<?php
                         getvar('party','');
-                      ?>];
+                      ?>],
+          sortvar = '<?php
+                        getvar('sort','');
+                      ?>';
       console.log(field);
       d3.csv("MPTrack.csv", function(mps) {
         var matrix = [];
@@ -94,8 +97,91 @@
             parties[p++] = mps[i]["Political party"];
         };
 
-        states.sort();
-        parties.sort();
+        if(sortvar == 'party') {
+          states.sort();
+
+          var num = {};
+          var mat = {};
+          for (var i = mps.length - 1; i >= 0; i--)
+            if( states.indexOf(mps[i]["State"]) >= 0 && parties.indexOf(mps[i]["Political party"]) >= 0 && !isNaN(parseFloat(mps[i][field])) ) {
+              if(mat[mps[i]["Political party"]] == undefined) {
+                mat[mps[i]["Political party"]] = 0;
+                num[mps[i]["Political party"]] = 0;
+              }
+              mat[mps[i]["Political party"]] += parseFloat(mps[i][field]);
+              num[mps[i]["Political party"]]++;
+            }
+          for(var i = 0; i < parties.length; ++i)
+            if(num[parties[i]] > 0)
+              mat[parties[i]] /= parseFloat(num[parties[i]]);
+          parties.sort(function(a,b)  {
+            return mat[b] - mat[a];
+          })
+        }
+        else if(sortvar == 'state') {
+          parties.sort();
+
+          var num = {};
+          var mat = {};
+          for (var i = mps.length - 1; i >= 0; i--)
+            if( states.indexOf(mps[i]["State"]) >= 0 && parties.indexOf(mps[i]["Political party"]) >= 0 && !isNaN(parseFloat(mps[i][field])) ) {
+              if(mat[mps[i]["State"]] == undefined) {
+                mat[mps[i]["State"]] = 0;
+                num[mps[i]["State"]] = 0;
+              }
+              mat[mps[i]["State"]] += parseFloat(mps[i][field]);
+              num[mps[i]["State"]]++;
+            }
+          for(var i = 0; i < states.length; ++i)
+            if(num[states[i]] > 0)
+              mat[states[i]] /= parseFloat(num[states[i]]);
+          states.sort(function(a,b)  {
+            return mat[b] - mat[a];
+          })
+        }
+        else if(sortvar == 'sp')  {
+          var num = {};
+          var mat = {};
+          for (var i = mps.length - 1; i >= 0; i--)
+            if( states.indexOf(mps[i]["State"]) >= 0 && parties.indexOf(mps[i]["Political party"]) >= 0 && !isNaN(parseFloat(mps[i][field])) ) {
+              if(mat[mps[i]["Political party"]] == undefined) {
+                mat[mps[i]["Political party"]] = 0;
+                num[mps[i]["Political party"]] = 0;
+              }
+              mat[mps[i]["Political party"]] += parseFloat(mps[i][field]);
+              num[mps[i]["Political party"]]++;
+            }
+          for(var i = 0; i < parties.length; ++i)
+            if(num[parties[i]] > 0)
+              mat[parties[i]] /= parseFloat(num[parties[i]]);
+          parties.sort(function(a,b)  {
+            return mat[b] - mat[a];
+          });          
+
+          var num = {};
+          var mat = {};
+          for (var i = mps.length - 1; i >= 0; i--)
+            if( states.indexOf(mps[i]["State"]) >= 0 && parties.indexOf(mps[i]["Political party"]) >= 0 && !isNaN(parseFloat(mps[i][field])) ) {
+              if(mat[mps[i]["State"]] == undefined) {
+                mat[mps[i]["State"]] = 0;
+                num[mps[i]["State"]] = 0;
+              }
+              mat[mps[i]["State"]] += parseFloat(mps[i][field]);
+              num[mps[i]["State"]]++;
+            }
+          for(var i = 0; i < states.length; ++i)
+            if(num[states[i]] > 0)
+              mat[states[i]] /= parseFloat(num[states[i]]);
+          states.sort(function(a,b)  {
+            return mat[b] - mat[a];
+          });
+        }
+        else  {
+          states.sort();
+          parties.sort();
+        }
+
+
         for (var i = 0; i < states.length; i++) {
           matrix[i] = [];
           numb[i] = [];

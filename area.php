@@ -37,7 +37,7 @@ var y = d3.scale.linear()
 var colors = [];
 var color = Math.random()*360, off = 4*360/39;
 for(var i = 1; i <= 50; ++i)
-  colors.push( "hsl(" + ((color+off*i)%360) + ", 60%, 50%)");
+  colors.push( "hsl(" + ((color+off*i)%360) + ", 60%, 55%)");
 
 
 var z = d3.scale.ordinal()
@@ -80,14 +80,13 @@ var partyFilt = [<?php
   console.log(partyFilt);
   //get distinct parties & states
   for (var i = mps.length - 1; i >= 0; i--) {
-    if(mps[i][f1].length > 0)  {
+    if(mps[i][f1].length > 0)
       if (statesD[mps[i][f1]] == undefined)
-        statesD[mps[i][f1]] = 1;
-      else
-        statesD[mps[i][f1]]++;
-    }
-    if (mps[i][f2].length > 0 && (partyFilt.length == 0 || partyFilt.indexOf(mps[i][f2]) >= 0))
+        statesD[mps[i][f1]] = 0;
+    if (mps[i][f1].length > 0 && mps[i][f2].length > 0 && (partyFilt.length == 0 || partyFilt.indexOf(mps[i][f2]) >= 0)) {
+      statesD[mps[i][f1]]++;
       partiesD[mps[i][f2]] = true;
+    }
   }
 
   //sort states into an array
@@ -201,7 +200,7 @@ var partyFilt = [<?php
 
   // Add y-axis rules.
   var rule = svg.selectAll("g.rule")
-      .data(y.ticks(25))
+      .data(y.ticks(12.5))
     .enter().append("g")
       .attr("class", "rule")
       .attr("transform", function(d) { return "translate(0," + y(d) + ")"; });
@@ -216,6 +215,12 @@ var partyFilt = [<?php
       .attr("x", width -20)
       .attr("dy", ".35em")
       .text(d3.format(",d"));
+  rule.append("text")
+      .attr("x", -15)
+      .attr("dy", ".35em")
+      .text(d3.format(",d"))
+      .attr("text-anchor","start")
+      ;
 
   svg.append("text")
       .attr("x", width)
@@ -225,7 +230,7 @@ var partyFilt = [<?php
       .attr("font-size", "14")
       .attr("font-family", "Helvetica")
       //.attr("font-style", "Oblique")
-      .text("... No. of Members ...");
+      .text("Number of Members");
 
   var total = svg.append("text")
       .attr("x", width/2 - 100)
