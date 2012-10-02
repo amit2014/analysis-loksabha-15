@@ -88,16 +88,16 @@ stroke: black;
             }
         else    {
             var num = {};
-            for(var i = data.length - 1; i >= 0; --i) {
-                if(!isNaN(parseFloat(data[i][xField]))) {
-                    if(num[data[i][yField]] == undefined) {
-                        num[data[i][yField]] = 0;
-                        dict[data[i][yField]] = 0;
+            for(var i = data.length - 1; i >= 0; --i)
+                if(!isNaN(parseFloat(data[i][xField])))
+                    if(data[i][yField].length > 0) {
+                        if(num[data[i][yField]] == undefined) {
+                            num[data[i][yField]] = 0;
+                            dict[data[i][yField]] = 0;
+                        }
+                        dict[data[i][yField]] += parseFloat(data[i][xField]);
+                        num[data[i][yField]]++;
                     }
-                    dict[data[i][yField]] += parseFloat(data[i][xField]);
-                    num[data[i][yField]]++;
-                }
-            }
             for (var key in dict)
                 dict[key] = dict[key]/num[key];
         }

@@ -82,7 +82,7 @@
 								  if (f!=dstatea.length-1)
 								  pp+=","	;
 							  }		
-							  d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+"&party="+pp));
+							  d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+pp+"&field2="+get[4]+"&party="+get[5]));
                       }).on('mouseover',crosshover).on('mouseout',crossout);						
                       function crosshover(d){
                           d3.select(this).style('background-color','rgba(1,1,1,0.25)');
