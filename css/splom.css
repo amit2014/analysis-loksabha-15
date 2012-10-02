@@ -2,6 +2,10 @@ svg {
   font: 10px sans-serif;
 }
 
+.cell text {
+  font-weight: bold;
+}
+
 .axis {
   shape-rendering: crispEdges;
 }
@@ -44,23 +48,15 @@ circle {
   fill: #6c0000;
 }
 
-.InterHigherSecondary {
+.InterHigherSecondary, .CertificateCourse {
   fill: #e30000;
 }
 
-.UnderGraduate, .CertificateCourse, .DiplomaCourse {
+.UnderGraduate, .DiplomaCourse {
   fill: #f31600;
 }
 
-.ProfessionalGraduate {
-  fill: #867a00;
-}
-
-.Graduate {
-  fill: #18c400;
-}
-
-.PostDiplomaCourse {
+.ProfessionalGraduate, .Graduate, .PostDiplomaCourse {
   fill: #00b228;
 }
 

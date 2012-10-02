@@ -38,12 +38,25 @@
       console.log([curl,file,field,state,field2,party,sortt]);
       return [curl,file,field,state,field2,party,sortt];
   }
+  arrupa = ['Indian National Congress', 'Nationalist Congress Party', 'All India Majlis-E-Ittehadul Muslimmen', 'Assam United Democratic Front', 'Dravida Munnetra Kazhagam', 'Jammu and Kashmir National Conference', 'Kerala Congress (M)', 'Muslim League Kerala State Committee', 'Rashtriya Lok Dal', 'Sikkim Democratic Front', 'Viduthalai Chiruthaigal Katchi'];
+  arrnda = ['Asom Gana Parishad', 'Bharatiya Janata Party', 'Haryana Janhit Congress', 'Janata Dal (United)', 'Jharkhand Mukti Morcha', "Nagaland People's Front", 'Shiromani Akali Dal', 'Shiv Sena', 'Telangana Rashtra Samithi'];
   function add_bc(){
                   var d=decodeURIComponent($('#partyf')[0].options[$('#partyf')[0].selectedIndex].value)
                   if (d=="All") {dpartya=[];
                   d3.select('#dpartyfs').html('');
                   }
-                  if(dpartya.indexOf(d)==-1 && dpartya.indexOf('All')==-1){ 
+                  else if(d=="UPA")	{
+                  	for(var indx = 0; indx < arrupa.length; ++indx)
+                  		addo(arrupa[indx]);
+                  }
+                  else if (d == "NDA")	{
+                  	for(var indx = 0; indx < arrnda.length; ++indx)
+                  		addo(arrnda[indx]);
+                  }
+                  else
+                  	addo(d);
+                  function addo(d)	{
+                  	if(dpartya.indexOf(d)==-1){ 
                       dpartya=dpartya.concat(d);
                       var sug = d3.select('#dpartyfs').append('div').style('background-color','rgba(230,230,230,0.9)').style('font-size','smaller').style('padding','1px 8px').style('margin','2px 0px').attr('name',d).html(d).style('text-align','left');
                           sug.append('div').style('background-color','rgba(1,1,1,0)').style('float','right').style('padding','0px 5px').html('X').on('click',function(){
@@ -65,14 +78,15 @@
                       function crossout(d){
                           d3.select(this).style('background-color','rgba(1,1,1,0)')
                       }
-                  }
+                    }
+              	  }
           }
   function add_pc(){
                   var d=decodeURIComponent($('#statef')[0].options[$('#statef')[0].selectedIndex].value)
                   if (d=="All") {dstatea=[];
                   d3.select('#dstatefs').html('');
                   }
-                  if(dstatea.indexOf(d)==-1 && dstatea.indexOf('All')==-1){ 
+                  if(dstatea.indexOf(d)==-1 && d!='All'){ 
                       dstatea=dstatea.concat(d);
                       var sug = d3.select('#dstatefs').append('div').style('background-color','rgba(230,230,230,0.9)').style('font-size','smaller').style('padding','1px 8px').style('margin','2px 0px').attr('name',d).html(d).style('text-align','left');
                           sug.append('div').style('background-color','rgba(1,1,1,0)').style('float','right').style('padding','0px 5px').html('X').on('click',function(){

@@ -73,6 +73,8 @@ stroke: black;
     d3.csv("MPTrack.csv", function(data) {
     
         data = data.filter(function(obj)    {
+          if(yField == 'Educational qualifications' && obj[yField] == 'Information not available')
+            return false;
           if(obj[yField].length <= 0)
             return false;
           if (stateFilt.length != 0 && stateFilt.indexOf(obj["State"]) < 0)

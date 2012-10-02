@@ -32,7 +32,7 @@ function initall() {
 		//***************
 	
 		//Setting Party field up
-		var allparties=['All'];
+		var allparties=['All','UPA','NDA'];
 		for (var i=0;i<data.length;i++){
 			if (allparties.indexOf(data[i]['Political party'])==-1){
 				if (data[i]['Political party'])allparties=allparties.concat(data[i]['Political party']);

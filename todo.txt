@@ -1,32 +1,13 @@
 TODO:
 
 1. design a home page
-2. imporove look of the data set tab, if required remove notes waala column (discuss?)
 3. SPLOM
 	a. coloring is on the basis of?
 	b. disable/remove panel completely
 	c. right mein jo y axis ke ticks hain vo kat rahe hain, thoda left shift karo
-	d. if easily possible, add ticks to the left waala y axis also
-	e. Graph labels i.e. age, debates etc ko thoda bada kar do aur bold kar do
+	d. if easily possible, add ticks to the left waala y axis also : Not easy :P
 4. State Party Mashup
 	a. soting options ke liye radio button
 	b. other parameters ke liye drop down
 	c. Disable/remove current panel
 6. Rename Home as Important plots
-7. In current home page,
-	b. Political Parties waale filter mein, is it possible ki we predefina a UPA and an NDA option? Political parties ke naam ke liye refer to the report that i have sent you under section "Political alliance" (5.4)
-	d. Pie Chart
-		ii. goto histogram tab and select age, then select pie tab <--> maza aaya?
-		iii. Index: Increase space between color and label
-					If possible change font from Times New Roman
-		v. Change label of x-axis dropdown to Parameter
-	e. Area
-		i. Option for sorting?
-		iii. y-axis label on the left also
-		iv. x-axis pe political party bhi aa sakti hai kya? : No. We don't want that.
-	f. Bar
-		i. x-axis label on the top also : I don't think so.
-		ii. radio button for sorting
-		iii. radio button for absolute value/percentage
-		iv. Educational qualification mein se "Information not available" waale ka katao : Chill to hai
-		vi. jab y-axis political party hai tab political party ka filter disable kar do, jab y-axis state hai tab state filter disable kar do
