@@ -225,7 +225,7 @@ var partyFilt = [<?php
       .attr("font-size", "14")
       .attr("font-family", "Helvetica")
       //.attr("font-style", "Oblique")
-      .text("... No. of MP's ...");
+      .text("... No. of Members ...");
 
   var total = svg.append("text")
       .attr("x", width/2 - 100)
