@@ -9,65 +9,10 @@
     <div class="home-widgets">
       <?php include("includes/panel2.php"); ?>
     </div>
-    <div class="mash" id="featured">
+    <div class="mash" id="featured" style="overflow:hidden;height:auto;width:auto">
+        <iframe src="mash_p.php?field=&sort=" id="frame" style="text-align:center;width:150%;height:130%;padding-left:2px;padding-right:2px;padding-top:22px;padding-bottom:2px;overflow:auto;margin:0px;" scrolling="yes" class="center"> </iframe>
 
-      <style>
-
-      #featured {
-        font-family: "Helvetica Neue", Helvetica, sans-serif;
-        position: relative;
-        width: 840px;
-      }
-
-      svg {
-        font: 10px sans-serif;
-      }
-
-      .axis path, .axis line {
-        fill: none;
-        stroke: #000;
-        shape-rendering: crispEdges;
-      }
-
-      .background {
-        fill: #eee;
-      }
-
-      line {
-        stroke: #fff;
-      }
-
-      text.active {
-        fill: red;
-      }
-
-      </style>
       <script src="js/d3.v2.min.js?2.8.1"></script>
-
-      <script >
-      <?php
-        function getvar($vname, $deflt)  { 
-          if(isset($_GET[$vname])){
-            echo urldecode($_GET[$vname]) ;
-          }
-          else
-          echo "$deflt"; 
-        }
-      ?>
-
-      var field = '<?php
-                    getvar('field','Questions');
-                  ?>',
-          stateFilt = [<?php
-                        getvar('state','');
-                      ?>],
-          partyFilt = [<?php
-                        getvar('party','');
-                      ?>],
-          sortvar = '<?php
-                        getvar('sortt','');
-                      ?>';
-      </script>
       <script src="js/mash.js"></script>
     </div>
   </div><!-- end of #wrapper --> 

@@ -6,7 +6,7 @@ function initall() {
 		//Setting xfield up
 		var sel_field = document.getElementById("xfield");
 		var blocked_fields = ["MP name", "Nature of membership", "Start of term", "End of term", "State", "Constituency", "Political party", "Gender", 
-		"Educational qualifications", "Educational qualifications - details", "Private Member Bills", "Notes", "National Debates average", 
+		"Educational qualifications", "Educational qualifications - details", "Notes", "National Debates average", 
 		"National Private Member Bills average", "National Questions average", "National Attendance average", "State's Debates average", 
 		"State's Private Member Bills  average", "State's Questions average", "State's Attendance average"];
 		sel_field.innerHTML = "";
@@ -77,7 +77,7 @@ function initall() {
 				if (f!=dstatea.length-1)
 				vv+=","	;
 				}
-			d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+vv+"&field2="+get[4]+'&party='+get[5]));
+			d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+vv+"&field2="+get[4]+'&party='+get[5]+"&sortt="+get[6]));
 			//if(this.options[this.selectedIndex].value!='All') 
 			//else d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+"&field2="+get[4]+'&party='+get[5]));
 		}
@@ -158,6 +158,7 @@ function initall() {
 				if (blocked_fields.indexOf(field) < 0) sel_field.innerHTML += "	<option value=\'" + escape(field)+ "\'>" + field + "</option>";
 			}
 			document.getElementById("xfield").selectedIndex = 0;
+			document.getElementById('checkbx').innerHTML="";
 			var get=showurl();
 			d3.select("iframe").attr("src", encodeURI("histogram.php"+"?field=Age"+"&state="+get[3]+"&field2="+get[4]+'&party='+get[5]));
 			//getdhw();
@@ -179,7 +180,7 @@ function initall() {
 			}
 			
 			$("#xf")[0].innerHTML='Field';
-			
+			document.getElementById('checkbx').innerHTML="";
 			document.getElementById("xfield").selectedIndex = 1;
 			var get=showurl();
 			d3.select("iframe").attr("src", encodeURI("pie.php"+"?field=Political party&state="+get[3]+"&field2="+get[4]+'&party='+get[5]));		
@@ -204,7 +205,7 @@ function initall() {
 			}
 			document.getElementById("xfield").selectedIndex = 0;
 			document.getElementById("yfield").selectedIndex = 1;
-			
+			document.getElementById('checkbx').innerHTML="";
 			var get=showurl();
 			d3.select("iframe").attr("src", encodeURI("brush.php"+"?field=Age"+"&state="+get[3]+"&field2=Attendance"+'&party='+get[5]));		
 			//getdhw();
@@ -222,7 +223,7 @@ function initall() {
 			d3.select('#partyf').attr('disabled',null);
 			dstatea=[];
 			add_pc();
-			
+			document.getElementById('checkbx').innerHTML="";
 			var get=showurl();
 			d3.select("iframe").attr("src", encodeURI("area.php"+"?field="+get[2]+"&state="+"&field2="+get[4]+'&party='+get[5]));		
 			//getdhw();
@@ -250,6 +251,19 @@ function initall() {
 			}
 			document.getElementById("xfield").selectedIndex = 0;
 			document.getElementById("yfield").selectedIndex = 1;
+			
+			document.getElementById('checkbx').innerHTML="";
+			document.getElementById('checkbx').innerHTML="<input name='cbox' id='cbox' type='checkbox' value='y'/><label for='cbox'>Sort Lexicographically</label>";
+			document.getElementById('cbox').onchange=ckbx;
+			
+			function ckbx(){
+				if(this.checked)
+				d3.select("iframe").attr("src", encodeURI("bars.php"+"?field="+"&state="+get[3]+"&field2=State"+'&party='+get[5]+"&sortt="+this.value));
+				else
+				d3.select("iframe").attr("src", encodeURI("bars.php"+"?field="+"&state="+get[3]+"&field2=State"+'&party='+get[5]+"&sortt=x"));				
+//				console.log(this,this.checked,this.value);
+			}
+			$('#cbox').button();
 			var get=showurl();
 			d3.select("iframe").attr("src", encodeURI("bars.php"+"?field="+"&state="+get[3]+"&field2=State"+'&party='+get[5]+"&sortt="+get[6]));		
 		}

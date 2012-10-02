@@ -33,6 +33,9 @@
       	  <div id="dpartyf" style="float:left;clear:left;text-align:center" class="panelf" ><label for="partyf" style="text-align:left">Political Party</label><select name="partyf" id="partyf" style="width:270px"></select>
           <div id="dpartyfs" style="max-height:50px"></div>
          </div>
+         <div id="checkbx" style="clear:both;zoom:0.82">
+
+         </div>
 
     </div>
   </div>
