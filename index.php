@@ -8,9 +8,9 @@
       <div class="grid col-460">
         <h1 class="featured-title">The 15<sup>th</sup> Lok Sabha</h1>
         <h2 class="featured-subtitle">Analysis and Visualisation by</h2>
-          <p>Shivanker Goel (2011CS50272)<br>
-            Akhil Jain (2011CS5110272)<br>
-            Abhishek kumar (2011CS5110272)<br>
+          <p>Shivanker Goel (2011CS10298)<br>
+            Akhil Jain (2011CS50274)<br>
+            Abhishek kumar (2011CS50272)<br>
           </p>
         <div class="call-to-action"> 
         	<a href="plots.php" class="blue button">Proceed</a>
