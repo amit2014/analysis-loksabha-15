@@ -31,7 +31,6 @@ function histogramChart(field) {
       var gEnter = svg.enter().append("svg").append("g");
       gEnter.append("g").attr("class", "shads");
       gEnter.append("g").attr("class", "bars");
-      
       gEnter.append("g").attr("class", "x axis");
       gEnter.append("g").attr("class", "y axis right");
       gEnter.append("g").attr("class", "y axis left");
@@ -99,8 +98,6 @@ function histogramChart(field) {
         .attr("stroke-width", 9)
 		.attr("font-family",'-webkit-body')
         .text(field+" of MP's of selected States and Parties "
-		//(party==''?' All Parties ': " "+party+" ")+
-		//+" in "+(state==''?'  All States': " "+state+" ")
 		);
     });
   }

@@ -24,7 +24,6 @@ function fchange(){
 }
 function geturl(){
       var curl = decodeURIComponent(d3.select("#frame").attr("src"));
-	  
       var file =  curl.substring(0,curl.indexOf('.php'))+'.php';
       var field='';
 	  field=  curl.substring(curl.indexOf('?')+7,curl.indexOf('&'));

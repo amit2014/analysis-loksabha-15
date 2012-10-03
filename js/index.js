@@ -78,14 +78,11 @@ function initall() {
 				vv+=","	;
 				}
 			d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+vv+"&field2="+get[4]+'&party='+get[5]+"&sortt="+get[6]));
-			//if(this.options[this.selectedIndex].value!='All') 
-			//else d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+"&field2="+get[4]+'&party='+get[5]));
 		}
 		function setparty(){
 			var p=decodeURIComponent(this.options[this.selectedIndex].value);
 			var get=showurl();
 			add_bc();
-//			console.log(dpartya);	
 			var pp='';
 			for( f in dpartya){
 				if(dpartya[f]!='All'){
@@ -96,47 +93,36 @@ function initall() {
 				pp+=","	;
 			}		
 			d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+"&party="+pp+"&sortt="+get[6]));
-			//if(this.options[this.selectedIndex].value!='All') 
-			//else d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+'&party='));
 		}
-		//*****************
-		
+
+		//*****************		
 		$('#featured').css('overflow','hidden');
 		document.getElementById("yfield").innerHTML= "<option value=\'"+escape("")+"\'>Frequency</options>";
 		d3.select('#statef').attr('disabled',null);
 		d3.select('#xfield').attr('disabled',null);
 		d3.select('#yfield').attr('disabled','disabled');
 		d3.select('#partyf').attr('disabled',null);
-			
-
 		function getdhw(){
-	
-	var f= document.getElementById("frame").style;
-
-	var file=showurl()[1];
-	
-	var z=0.85;
-	if (file=='histogram.php') z=0.9;
-	else if (file=='pie.php') z=0.93;
-	else if (file=='area.php') z=0.83;
-	else if (file=='brush.php') z=0.8;
-	else if (file=='bars.php') z=0.7;
-	else z=0.5;
-
-	f["zoom"]=z;
-	f["-moz-tranform"]="scale("+z+")";
-	f["-moz-tranform-origin"]="0 0";
-	f["-o-transform"]="scale("+z+")";
-	f["-o-transform-origin"]="0 0";
-	f["-webkit-transform"]="scale("+z+")";
-	f["-webkit-transform-origin"]= "0 0";
-/*	
-	document.getElementById("yfield").innerHTML= "<option value=\'"+escape("")+"\'>Frequency</options>";
-	d3.select('#statef').attr('disabled',null);
-	d3.select('#xfield').attr('disabled',null);
-	d3.select('#yfield').attr('disabled','disabled');
-	d3.select('#partyf').attr('disabled',null);*/
-}
+		
+			var f= document.getElementById("frame").style;
+			var file=showurl()[1];	
+			var z=0.85;
+			
+			if (file=='histogram.php') z=0.9;
+			else if (file=='pie.php') z=0.93;
+			else if (file=='area.php') z=0.83;
+			else if (file=='brush.php') z=0.8;
+			else if (file=='bars.php') z=0.7;
+			else z=0.5;
+		
+			f["zoom"]=z;
+			f["-moz-tranform"]="scale("+z+")";
+			f["-moz-tranform-origin"]="0 0";
+			f["-o-transform"]="scale("+z+")";
+			f["-o-transform-origin"]="0 0";
+			f["-webkit-transform"]="scale("+z+")";
+			f["-webkit-transform-origin"]= "0 0";
+		}
 
 		getdhw();
 		document.getElementById('frame').onload = getdhw;
@@ -161,7 +147,6 @@ function initall() {
 			document.getElementById('checkbx').innerHTML="";
 			var get=showurl();
 			d3.select("iframe").attr("src", encodeURI("histogram.php"+"?field=Age"+"&state="+get[3]+"&field2="+get[4]+'&party='+get[5]));
-			//getdhw();
 		}
 
 		document.getElementById("graphs_1").onchange = function(e) {
@@ -184,7 +169,6 @@ function initall() {
 			document.getElementById("xfield").selectedIndex = 1;
 			var get=showurl();
 			d3.select("iframe").attr("src", encodeURI("pie.php"+"?field=Political party&state="+get[3]+"&field2="+get[4]+'&party='+get[5]));		
-			//getdhw();
 		}
 
 		document.getElementById("graphs_2").onchange = function(e) {
@@ -208,7 +192,6 @@ function initall() {
 			document.getElementById('checkbx').innerHTML="";
 			var get=showurl();
 			d3.select("iframe").attr("src", encodeURI("brush.php"+"?field=Age"+"&state="+get[3]+"&field2=Attendance"+'&party='+get[5]));		
-			//getdhw();
 		}
 
 		document.getElementById("graphs_3").onchange = function(e) {
@@ -226,7 +209,6 @@ function initall() {
 			document.getElementById('checkbx').innerHTML="";
 			var get=showurl();
 			d3.select("iframe").attr("src", encodeURI("area.php"+"?field="+get[2]+"&state="+"&field2="+get[4]+'&party='+get[5]));		
-			//getdhw();
 		}
 
 		document.getElementById("graphs_4").onchange = function(e) {
@@ -244,14 +226,12 @@ function initall() {
 			x_field.innerHTML = "";
 			y_field.innerHTML = "";
 			for (field in avx_fields) {
-				
 				 x_field.innerHTML += "<option value=\'" + escape(avx_fields[field]=='Frequency'?'':avx_fields[field]) +"\'>" + avx_fields[field] + "</option>";}
 			for(field in avy_fields){
 				y_field.innerHTML += "<option value=\'" + escape(avy_fields[field]) +"\'>" + avy_fields[field] + "</option>";
 			}
 			document.getElementById("xfield").selectedIndex = 0;
 			document.getElementById("yfield").selectedIndex = 1;
-			
 			document.getElementById('checkbx').innerHTML="";
 			document.getElementById('checkbx').innerHTML="<input name='cbox' id='cbox' type='checkbox' value='y'/><label for='cbox'>Sort Lexicographically</label>";
 			document.getElementById('cbox').onchange=ckbx;
@@ -261,7 +241,6 @@ function initall() {
 				d3.select("iframe").attr("src", encodeURI("bars.php"+"?field="+"&state="+get[3]+"&field2=State"+'&party='+get[5]+"&sortt="+this.value));
 				else
 				d3.select("iframe").attr("src", encodeURI("bars.php"+"?field="+"&state="+get[3]+"&field2=State"+'&party='+get[5]+"&sortt=x"));				
-//				console.log(this,this.checked,this.value);
 			}
 			$('#cbox').button();
 			var get=showurl();
@@ -270,12 +249,3 @@ function initall() {
 	});
 }
 
-
-function clone(obj) {
-	if (null == obj || "object" != typeof obj) return obj;
-	var copy = obj.constructor();
-	for (var attr in obj) {
-		if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
-	}
-	return copy;
-}

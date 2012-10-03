@@ -38,7 +38,5 @@
          </div>
 
     </div>
-  </div>
-  <!-- end of .widget-wrapper --> 
-</div>
-<!-- end of .col-300 --> 
+  </div><!-- end of .widget-wrapper --> 
+</div><!-- end of .col-300 --> 

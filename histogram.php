@@ -60,10 +60,7 @@
       .datum(distribution)
     .call(histogramChart(field)
       .bins(d3.scale.linear().domain(d3.extent(distribution)).ticks(2.75 * Math.ceil(Math.log(distribution.length)+1)))
-    //  .tickFormat(d3.format(".2f"))
     );
-    //console.log(d3.scale.linear().domain(d3.extent(distribution)).ticks(5 * Math.ceil(Math.log(distribution.length)+1)));
-  
   });
 
 </script>

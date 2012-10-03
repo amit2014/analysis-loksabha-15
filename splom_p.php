@@ -3,7 +3,7 @@
 <head>
 <link type="text/css" rel="stylesheet" href="css/splom.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
+<title>Splom</title>
 </head>
 
 <body>

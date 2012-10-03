@@ -1,8 +1,4 @@
-
       d3.csv("MPTrack.csv", function(mps) {
-		  
-		  
-
         var age = "Age",
             debs = "Debates",
             qs = "Questions",
@@ -65,7 +61,6 @@
             .attr("height", size * n + padding + 20)
             .append("g")
             .attr("transform", "translate(20, 20)");
-
 
         // X-axis.
         svg.selectAll("g.x.axis")
@@ -153,15 +148,4 @@
           for (i = -1; ++i < n;) for (j = -1; ++j < m;) c.push({x: a[i], i: i, y: b[j], j: j});
           return c;
         }
-        
-
-        // var legend = svg.append("text")
-        //   .attr("width", 100)
-        //   .attr("height", 200)
-        //   .attr("stroke", "black")
-        //   .attr("stroke-width", "8")
-        //   .attr("x", size * n + padding + 50);
-        // legend.attr("y", (size * n + padding)/2 - legend.attr("height")/2);
-        // console.log(legend);
-
       });
