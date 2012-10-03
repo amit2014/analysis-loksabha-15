@@ -56,13 +56,13 @@ function getvar($vname, $deflt)  {
 
 
 		var vis = d3.select("div").append("svg").data([data]).attr("width", width).attr("height", height).attr("style","float:left;");
-		d3.select("div").append('div').attr('id','legend').style('float','left').style('width','340px').style('padding-left','90px').style('max-height','400px').style('overflow','auto');
+		d3.select("div").append('div').attr('id','legend').style('float','left').style('width','370px').style('padding-left','90px').style('max-height','400px').style('overflow','auto');
 		var arcs = vis.selectAll("g.arc").data(donut).enter().append("g").attr("class", "arc").attr("transform", "translate(" + radius + "," + radius + ")");
 
 		var paths = arcs.append("path").attr("style","stroke:#000; stroke-width:0.2")
 			.attr("fill", function(d, i) {
 				var l = d3.select('#legend');
-				var e = l.append('div').style('width','340px').style('height','20px').style('border','thin black solid').style('margin-top','1px')
+				var e = l.append('div').style('width','360px').style('height','20px').style('border','thin black solid').style('margin-top','1px')
 					.style('border-collapse','collapse').style('float','right').style('text-align','left').style('font-size','smaller')
 					.style('font-family','arial').style('margin-top','2px');
 				var d = e.append('div').style('width','40px').style('height','20px').style('border','thin').style('float','left').style('background-color',color(i))

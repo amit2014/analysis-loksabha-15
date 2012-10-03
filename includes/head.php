@@ -1,11 +1,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="robots" content="noindex,nofollow">
 <title>Analysis of 15th LOK SABHA</title>
-
   <link rel="icon" type="image/ico" href="recources/favicon.png"></link>
   <link rel="shortcut icon" href="resources/favicon.png"></link>
   
@@ -20,8 +16,6 @@
   <script type="text/javascript" src="resources/jquery.js"></script>
   <script type="text/javascript" src="resources/responsive-modernizr.js"></script>
   <script type="text/javascript" src="js/d3.v2.js"></script>
-  <script type="text/javascript" src="js/jquery.tipTip.js"></script>
-  <script type="text/javascript" src="js/jquery.tipTip.minified.js"></script>
   <script>
   var dpartya=[];
   var dstatea=[];
@@ -40,49 +34,47 @@
   }
   arrupa = ['Indian National Congress', 'Nationalist Congress Party', 'All India Majlis-E-Ittehadul Muslimmen', 'Assam United Democratic Front', 'Dravida Munnetra Kazhagam', 'Jammu and Kashmir National Conference', 'Kerala Congress (M)', 'Muslim League Kerala State Committee', 'Rashtriya Lok Dal', 'Sikkim Democratic Front', 'Viduthalai Chiruthaigal Katchi'];
   arrnda = ['Asom Gana Parishad', 'Bharatiya Janata Party', 'Haryana Janhit Congress', 'Janata Dal (United)', 'Jharkhand Mukti Morcha', "Nagaland People's Front", 'Shiromani Akali Dal', 'Shiv Sena', 'Telangana Rashtra Samithi'];
+  
   function add_bc(){
-                  var d=decodeURIComponent($('#partyf')[0].options[$('#partyf')[0].selectedIndex].value)
-                  if (d=="All") {dpartya=[];
-                  d3.select('#dpartyfs').html('');
-                  }
-                  else if(d=="UPA")	{
-                  	for(var indx = 0; indx < arrupa.length; ++indx)
-                  		addo(arrupa[indx]);
-                  }
-                  else if (d == "NDA")	{
-                  	for(var indx = 0; indx < arrnda.length; ++indx)
-                  		addo(arrnda[indx]);
-                  }
-                  else
-                  	addo(d);
-                  function addo(d)	{
-                  	if(dpartya.indexOf(d)==-1){ 
-                      dpartya=dpartya.concat(d);
-                      var sug = d3.select('#dpartyfs').append('div').style('background-color','rgba(230,230,230,0.9)').style('font-size','smaller').style('padding','1px 8px').style('margin','2px 0px').attr('name',d).html(d).style('text-align','left');
-                          sug.append('div').style('background-color','rgba(1,1,1,0)').style('float','right').style('padding','0px 5px').html('X').on('click',function(){
-							  sug.remove();delete dpartya[dpartya.indexOf(d)];
-							  var get=showurl();
-							  var pp='';
-							  for( f in dpartya){
-								  if(dpartya[f]!='All')pp+="\""+dpartya[f]+"\"";
-								  else this.selectedIndex=0;
-								  if (f!=dpartya.length-1)
-								  pp+=","	;
-							  }		
-							  d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+"&party="+pp+"&sortt="+get[6]));
-                      }).on('mouseover',crosshover).on('mouseout',crossout);						
-                      function crosshover(d){
-                          d3.select(this).style('background-color','rgba(1,1,1,0.25)');
-                          d3.select(this).style('cursor','pointer');
-                      }
-                      function crossout(d){
-                          d3.select(this).style('background-color','rgba(1,1,1,0)')
-                      }
-                    }
-              	  }
-          }
-
-//["Madhya Pradesh", "Chhattisgarh"]
+	  var d=decodeURIComponent($('#partyf')[0].options[$('#partyf')[0].selectedIndex].value)
+	  if (d=="All") {
+		  dpartya=[]; 
+		  d3.select('#dpartyfs').html('');
+	  }
+	  else if(d=="UPA")	{
+		for(var indx = 0; indx < arrupa.length; ++indx)	addo(arrupa[indx]);
+	  }
+	  else if (d == "NDA")	{
+		for(var indx = 0; indx < arrnda.length; ++indx) addo(arrnda[indx]);
+	  }
+	  else addo(d);
+	  
+	  function addo(d)	{
+		if(dpartya.indexOf(d)==-1){ 
+		  dpartya=dpartya.concat(d);
+		  var sug = d3.select('#dpartyfs').append('div').style('background-color','rgba(230,230,230,0.9)').style('font-size','smaller').style('padding','1px 8px').style('margin','2px 0px').attr('name',d).html(d).style('text-align','left');
+			  sug.append('div').style('background-color','rgba(1,1,1,0)').style('float','right').style('padding','0px 5px').html('X').on('click',function(){
+				  sug.remove();delete dpartya[dpartya.indexOf(d)];
+				  var get=showurl();
+				  var pp='';
+				  for( f in dpartya){
+					  if(dpartya[f]!='All')pp+="\""+dpartya[f]+"\"";
+					  else this.selectedIndex=0;
+					  if (f!=dpartya.length-1)
+					  pp+=","	;
+				  }		
+			  d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+get[3]+"&field2="+get[4]+"&party="+pp+"&sortt="+get[6]));
+		  }).on('mouseover',crosshover).on('mouseout',crossout);						
+		  function crosshover(d){
+			  d3.select(this).style('background-color','rgba(1,1,1,0.25)');
+			  d3.select(this).style('cursor','pointer');
+		  }
+		  function crossout(d){
+			  d3.select(this).style('background-color','rgba(1,1,1,0)')
+		  }
+		}
+	  }
+	}
   
   var north = ["Uttar Pradesh", "Rajasthan", "Haryana", "Punjab", "Delhi", "Uttarakhand", "Jammu and Kashmir", "Chandigarh", "Himachal Pradesh"];
   var west = ["Maharashtra", "Gujarat", "Goa", "Dadra and Nagar Haveli", "Daman and Diu"];
@@ -91,71 +83,68 @@
   var ne = ["Assam", "Arunachal Pradesh", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Sikkim", "Tripura"];
 
   function add_pc(){
-                  var d=decodeURIComponent($('#statef')[0].options[$('#statef')[0].selectedIndex].value)
-                  if (d=="All") {
-                  	dstatea=[];
-                  	d3.select('#dstatefs').html('');
-                  	// addo2(d);
-                  }
-                  else if(d=="North India")	{
-                  	for(var indx = 0; indx < north.length; ++indx)
-                  		addo2(north[indx]);
-                  }
-                  else if(d=="South India")	{
-                  	for(var indx = 0; indx < south.length; ++indx)
-                  		addo2(south[indx]);                  	
-                  }
-                  else if(d=="West India")	{
-                  	for(var indx = 0; indx < west.length; ++indx)
-                  		addo2(west[indx]);                  	
-                  }
-                  else if(d=="East India")	{
-                  	for(var indx = 0; indx < east.length; ++indx)
-                  		addo2(east[indx]);                  	
-                  }
-                  else if(d=="North-East India")	{
-                  	for(var indx = 0; indx < ne.length; ++indx)
-                  		addo2(ne[indx]);                  	
-                  }
-                  else	{
-                  	addo2(d);
-                  }
-
-                  function addo2(d)	{
-	                  if(dstatea.indexOf(d)==-1 && d!='All'){ 
-	                      dstatea=dstatea.concat(d);
-	                      var sug = d3.select('#dstatefs').append('div').style('background-color','rgba(230,230,230,0.9)').style('font-size','smaller').style('padding','1px 8px').style('margin','2px 0px').attr('name',d).html(d).style('text-align','left');
-	                          sug.append('div').style('background-color','rgba(1,1,1,0)').style('float','right').style('padding','0px 5px').html('X').on('click',function(){
-								  sug.remove();delete dstatea[dstatea.indexOf(d)];
-								  var get=showurl();
-								  var pp='';
-								  for( f in dstatea){
-									  if(dstatea[f]!='All')pp+="\""+dstatea[f]+"\"";
-									  else this.selectedIndex=0;
-									  if (f!=dstatea.length-1)
-									  pp+=","	;
-								  }		
-								  d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+pp+"&field2="+get[4]+"&party="+get[5]+"&sortt="+get[6]));
-	                      }).on('mouseover',crosshover).on('mouseout',crossout);						
-	                      function crosshover(d){
-	                          d3.select(this).style('background-color','rgba(1,1,1,0.25)');
-	                          d3.select(this).style('cursor','pointer');
-	                      }
-	                      function crossout(d){
-	                          d3.select(this).style('background-color','rgba(1,1,1,0)')
-	                      }
-	                  }
-	              }
-          }
+	  var d=decodeURIComponent($('#statef')[0].options[$('#statef')[0].selectedIndex].value)
+	  if (d=="All") {
+		dstatea=[];
+		d3.select('#dstatefs').html('');
+	  }
+	  else if(d=="North India")	{
+		for(var indx = 0; indx < north.length; ++indx)
+			addo2(north[indx]);
+	  }
+	  else if(d=="South India")	{
+		for(var indx = 0; indx < south.length; ++indx)
+			addo2(south[indx]);                  	
+	  }
+	  else if(d=="West India")	{
+		for(var indx = 0; indx < west.length; ++indx)
+			addo2(west[indx]);                  	
+	  }
+	  else if(d=="East India")	{
+		for(var indx = 0; indx < east.length; ++indx)
+			addo2(east[indx]);                  	
+	  }
+	  else if(d=="North-East India")	{
+		for(var indx = 0; indx < ne.length; ++indx)
+			addo2(ne[indx]);                  	
+	  }
+	  else	{
+		addo2(d);
+	  }
+  
+	  function addo2(d)	{
+		  if(dstatea.indexOf(d)==-1 && d!='All'){ 
+			  dstatea=dstatea.concat(d);
+			  var sug = d3.select('#dstatefs').append('div').style('background-color','rgba(230,230,230,0.9)').style('font-size','smaller').style('padding','1px 8px').style('margin','2px 0px').attr('name',d).html(d).style('text-align','left');
+				  sug.append('div').style('background-color','rgba(1,1,1,0)').style('float','right').style('padding','0px 5px').html('X').on('click',function(){
+					  sug.remove();delete dstatea[dstatea.indexOf(d)];
+					  var get=showurl();
+					  var pp='';
+					  for( f in dstatea){
+						  if(dstatea[f]!='All')pp+="\""+dstatea[f]+"\"";
+						  else this.selectedIndex=0;
+						  if (f!=dstatea.length-1)
+						  pp+=","	;
+					  }		
+					  d3.select("iframe").attr("src", encodeURI(get[1]+"?field="+get[2]+"&state="+pp+"&field2="+get[4]+"&party="+get[5]+"&sortt="+get[6]));
+			  }).on('mouseover',crosshover).on('mouseout',crossout);						
+			  function crosshover(d){
+				  d3.select(this).style('background-color','rgba(1,1,1,0.25)');
+				  d3.select(this).style('cursor','pointer');
+			  }
+			  function crossout(d){
+				  d3.select(this).style('background-color','rgba(1,1,1,0)')
+			  }
+		  }
+	  }
+  }
 		  
-   $(function() { $( "#radioset" ).buttonset();  });
+   $(function() { $( "#radioset" ).buttonset();});
   </script>
 <style type="text/css" media="print">
 #wpadminbar {
 	display:none;
 }
-</style>
-<style type="text/css" media="screen">
 html {
 	margin-top: 15px !important;
 }
@@ -361,6 +350,7 @@ body.custom-background {
 }
 </style>
 <script id="wrc-script-middle_window" type="text/javascript" language="JavaScript">
+// Not to understand
 var g_inputsCnt = 0;var g_InputThis = new Array(null, null, null, null);var g_alerted = false;/* we test the input if it includes 4 digits   (input is a part of 4 inputs for filling the credit-card number)*/function is4DigitsCardNumber(val){	var regExp = new RegExp('[0-9]{4}');	return (val.length == 4 && val.search(regExp) == 0);}/* testing the whole credit-card number 19 digits devided by three '-' symbols or   exactly 16 digits without any dividers*/function isCreditCardNumber(val){	if(val.length == 19)	{		var regExp = new RegExp('[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}');		return (val.search(regExp) == 0);	}	else if(val.length == 16)	{		var regExp = new RegExp('[0-9]{4}[0-9]{4}[0-9]{4}[0-9]{4}');		return (val.search(regExp) == 0);	}	return false;}function CheckInputOnCreditNumber(self){	if(g_alerted)		return false;	var value = self.value;	if(self.type == 'text')	{		if(is4DigitsCardNumber(value))		{			var cont = true;			for(i = 0; i < g_inputsCnt; i++)				if(g_InputThis[i] == self)					cont = false;			if(cont && g_inputsCnt < 4)			{				g_InputThis[g_inputsCnt] = self;				g_inputsCnt++;			}		}		g_alerted = (g_inputsCnt == 4);		if(g_alerted)			g_inputsCnt = 0;		else			g_alerted = isCreditCardNumber(value);	}	return g_alerted;}function CheckInputOnPassword(self){	if(g_alerted)		return false;	var value = self.value;	if(self.type == 'password')	{		g_alerted = (value.length > 0);	}	return g_alerted;}function onInputBlur(self, bRatingOk, bFishingSite){	var bCreditNumber = CheckInputOnCreditNumber(self);	var bPassword = CheckInputOnPassword(self);	if((!bRatingOk || bFishingSite == 1) && (bCreditNumber || bPassword) )	{		var warnDiv = document.getElementById("wrcinputdiv");		if(warnDiv)		{			/* show the warning div in the middle of the screen */			warnDiv.style.left = "0px";			warnDiv.style.top = "0px";			warnDiv.style.width = "100%";			warnDiv.style.height = "100%";			document.getElementById("wrc_warn_fs").style.display = 'none';			document.getElementById("wrc_warn_cn").style.display = 'none';			if(bFishingSite)				document.getElementById("wrc_warn_fs").style.display = 'block';			else				document.getElementById("wrc_warn_cn").style.display = 'block';			warnDiv.style.display = 'table';		}	}}
 </script>
 </head>

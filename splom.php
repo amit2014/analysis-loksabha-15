@@ -9,8 +9,8 @@
 <div class="home-widgets">
       <?php include("includes/panel3.php"); ?>
     </div>
-    <div class="splom" id="featured" style="width:840px;margin-right:10px">
-            <iframe src="splom_p.php?state=&party=" id="frame" style="text-align:center;width:120%;height:130%;padding-left:2px;padding-right:2px;padding-top:22px;padding-bottom:2px;overflow:auto;margin:0px;" scrolling="yes" class="center"> </iframe>
+    <div class="splom" id="featured" style="width:840px;height:830px;margin-right:10px">
+            <iframe src="splom_p.php?state=&party=" id="frame" style="text-align:center;width:100%;height:130%;padding-left:2px;padding-right:2px;padding-top:22px;padding-bottom:2px;overflow:hidden;margin:0px;" scrolling="no" class="center"> </iframe>
           <script src="js/d3.v2.min.js?2.8.1"></script>
       <script src="js/splom.js"></script>
 </div>
